@@ -12,7 +12,7 @@
     "src/**/*"
   ],
   "exclude": [ //will exclude the files or folders passed in the array during compile-time.
-    "src/types/*.ts",
+    "src/interfaces/*.ts",
     "node_modules",
     ".vscode"
   ]

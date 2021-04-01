@@ -1,0 +1,8 @@
+{
+    "env": {
+        "MONGO_USER": "minglin",
+        "MONGO_PASSWORD": "o5nVC76bTfpUnT2C",
+        "MONGO_DB": "jim-app",
+        "PORT": "5000"
+    }
+}
