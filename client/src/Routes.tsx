@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { Fragment, lazy, LazyExoticComponent, Suspense } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
 
-import { RouteEnum } from './enums/route';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import { ERoute } from './enums/route';
+
 import LoadingView from './views/util/LoadingView';
 
 interface RouteConfig {
@@ -11,13 +12,19 @@ interface RouteConfig {
   component: (() => JSX.Element) | LazyExoticComponent<any>;
 }
 
+const WorkoutView = lazy(() => import('./views/workout/WorkoutView'));
 
 const routesConfig: RouteConfig[] = [
   {
     exact: true,
-    path: '/', 
-    component: () => <Redirect to={RouteEnum.Dashboard} />
+    path: '/',
+    component: () => <Redirect to={ERoute.WORKOUT} />
   },
+  {
+    exact: true,
+    path: ERoute.WORKOUT,
+    component: WorkoutView
+  }
 ];
 
 const renderRoutes = (routes: RouteConfig[]): JSX.Element => (
@@ -44,7 +51,7 @@ const renderRoutes = (routes: RouteConfig[]): JSX.Element => (
   </Suspense>
 );
 
-function Routes(): JSX.Element {
+function Routes() {
   return renderRoutes(routesConfig);
 }
 
