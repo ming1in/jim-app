@@ -11,4 +11,6 @@ router.put("/edit-user/:id", updateUser)
 
 router.delete("/delete-user/:id", deleteUser)
 
+router.get("/", )
+
 export default router

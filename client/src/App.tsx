@@ -1,12 +1,22 @@
-import React from "react";
+import React from 'react';
+
+import { Router } from 'react-router-dom';
+import { CssBaseline, ThemeProvider } from '@material-ui/core';
+import { createBrowserHistory } from 'history';
+
+import { themeConfig } from './theme';
+import Routes from './Routes';
 
 function App() {
+  const history = createBrowserHistory();
+
   return (
-    <div>
-      <header >
-        <p>The Jim-App </p>
-      </header>
-    </div>
+    <ThemeProvider theme={themeConfig}>
+      <Router history={history}>
+        <CssBaseline />
+        <Routes />
+      </Router>
+    </ThemeProvider>
   );
 }
 
