@@ -1,3 +1,5 @@
 export enum ERoute {
-  WORKOUT = '/workout'
+  WORKOUT = '/workout',
+  PROFILE = '/profile',
+  AUTH = '/auth'
 }
