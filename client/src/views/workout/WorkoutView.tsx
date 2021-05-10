@@ -8,7 +8,7 @@ function WorkoutView() {
     <Box >
       <Typography>Workout Modes</Typography>
       <Button variant="contained" href="./BuildView" color="primary">Build A Custom Workout</Button>
-      <Button variant="contained" href="./BuildView" color="secondary">Select A Pre-Made Workout</Button>
+      <Button variant="contained" href="./OptionsView" color="secondary">Select A Pre-Made Workout</Button>
     </Box>
   );
 }

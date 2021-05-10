@@ -7,7 +7,7 @@ function BuildView() {
   return (
     <Box>
       <Typography>Build Workout Modes</Typography>
-      <Button variant="contained" href="">Build Custom Workout</Button>
+      <Button variant="contained" href="LaunchView">Continue to Workout</Button>
     </Box>
   );
 }
