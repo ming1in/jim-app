@@ -6,7 +6,7 @@ import { getUsers } from '../../api/users';
 function WorkoutView() {
   return (
     <Box>
-      <Typography>Workout</Typography>
+      <Typography>WORKOUTVIEWE</Typography>
     </Box>
   );
 }
