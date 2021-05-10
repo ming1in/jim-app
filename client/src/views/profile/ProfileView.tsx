@@ -3,12 +3,12 @@ import React from 'react';
 import { Box, Typography } from '@material-ui/core';
 import { getUsers } from '../../api/users';
 
-function AuthView() {
+function ProfileView() {
   return (
     <Box>
-      <Typography>Authentication</Typography>
+      <Typography>Profile</Typography>
     </Box>
   );
 }
 
-export default AuthView;
+export default ProfileView;
