@@ -7,9 +7,12 @@ import {
   Box,
   makeStyles,
   createStyles,
+  Link
 } from "@material-ui/core";
+import { Link as RouterLink } from "react-router-dom";
 
 import SignUpForm from "./SignUpForm";
+import { ERoute } from "../../../enums/route";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -28,7 +31,17 @@ function SignUpView() {
       <Container maxWidth="sm" className={classes.container}>
         <Card>
           <CardContent>
-            <SignUpForm/>
+            <SignUpForm />
+            <Box mt={1}>
+              <Link
+                component={RouterLink}
+                to={ERoute.LOGIN}
+                variant="body2"
+                color="secondary"
+              >
+                Have an account? Click here to login
+              </Link>
+            </Box>
           </CardContent>
         </Card>
       </Container>

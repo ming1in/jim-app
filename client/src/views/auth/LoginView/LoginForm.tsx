@@ -50,7 +50,9 @@ export default function LoginForm() {
         values,
       }) => (
         <form onSubmit={handleSubmit}>
-          <Typography variant="h3">Login</Typography>
+          <Box mb={3}>
+            <Typography variant="h3">Login</Typography>
+          </Box>
           <TextField
             error={Boolean(touched.email && errors.email)}
             fullWidth

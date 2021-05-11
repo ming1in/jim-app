@@ -9,9 +9,21 @@ import {
   CircularProgress,
   Typography,
 } from "@material-ui/core";
+import useUsers from "../../../hooks/useUsers";
+
+interface ISignUpFormValues {
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+}
 
 function SignUpForm() {
+  const users = useUsers()
   const [isLoading, setIsLoading] = useState(false);
+
+  const handleSignUp = (values: ISignUpFormValues) => {
+    console.log(values);
+  };
 
   return (
     <Formik
@@ -32,9 +44,9 @@ function SignUpForm() {
         ),
       })}
       onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
-        setIsLoading(true);
         try {
           setSubmitting(true);
+          handleSignUp(values);
         } catch (err) {
           setStatus({ success: false });
           setErrors(err);
