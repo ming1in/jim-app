@@ -12,6 +12,9 @@ interface RouteConfig {
 }
 
 const WorkoutView = lazy(() => import("./views/workout/WorkoutView"));
+const SignUpView = lazy(() => import("./views/auth/SignUpView"));
+const LoginView = lazy(() => import("./views/auth/LoginView"));
+const RegistrationView = lazy(() => import("./views/auth/RegistrationView"))
 
 const routesConfig: RouteConfig[] = [
   {
@@ -23,6 +26,26 @@ const routesConfig: RouteConfig[] = [
     exact: true,
     path: ERoute.WORKOUT,
     component: WorkoutView,
+  },
+  {
+    exact: true,
+    path: ERoute.SIGNUP,
+    component: SignUpView,
+  },
+  {
+    exact: true,
+    path: ERoute.LOGIN,
+    component: LoginView,
+  },
+  {
+    exact: true,
+    path: ERoute.LOGIN,
+    component: LoginView,
+  },
+  {
+    exact: true,
+    path: ERoute.REGISTER,
+    component: RegistrationView,
   },
 ];
 

@@ -11,6 +11,8 @@ router.put("/edit-user/:id", updateUser)
 
 router.delete("/delete-user/:id", deleteUser)
 
-router.get("/", )
+router.post('/')
+
+router.get("/signup", )
 
 export default router
