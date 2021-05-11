@@ -7,7 +7,8 @@ function LaunchView() {
   return (
     <Box>
       <Typography>Workout Titles</Typography>
-      <Button variant="contained" href="">Build Custom Workout</Button>
+      <Button variant="contained" href="">Start Workout</Button>
+      <Button variant="contained" href="">Stop Workout</Button>
     </Box>
   );
 }

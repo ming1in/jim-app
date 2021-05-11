@@ -6,7 +6,7 @@ import { getUsers } from '../../api/users';
 function BuildView() {
   return (
     <Box>
-      <Typography>Build Workout Modes</Typography>
+      <Typography>Build Your Own Workout Mode</Typography>
       <Button variant="contained" href="LaunchView">Continue to Workout</Button>
     </Box>
   );
