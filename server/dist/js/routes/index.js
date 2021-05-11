@@ -2,10 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const index_1 = require("../controllers/users/index");
+const index_2 = require("../controllers/seed/index");
 const router = express_1.Router();
 router.get("/users", index_1.getUsers);
 router.post("/add-user", index_1.addUser);
 router.put("/edit-user/:id", index_1.updateUser);
 router.delete("/delete-user/:id", index_1.deleteUser);
 router.get("/");
+router.get('/seed/workout', index_2.seedWorkout);
 exports.default = router;
