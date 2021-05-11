@@ -5,6 +5,7 @@ import { getUsers } from '../../api/users';
 import { FormControl } from '@material-ui/core';
 
 function OptionsView() {
+  console.log("hello")
   const [muscleGroup, setMuscleGroup] = React.useState('');
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setMuscleGroup(event.target.value as string);
