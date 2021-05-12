@@ -15,6 +15,8 @@ interface RouteConfig {
 const WorkoutView = lazy(() => import('./views/workout/WorkoutView'));
 const ProfileView = lazy(() => import('./views/profile/ProfileView'));
 const AuthView = lazy(() => import('./views/auth/AuthView'));
+const OptionsView = lazy(() => import('./views/workout/OptionsView'));
+const LaunchView = lazy(() => import('./views/workout/LaunchView'));
 
 const routesConfig: RouteConfig[] = [
   {
@@ -36,7 +38,18 @@ const routesConfig: RouteConfig[] = [
     exact: true,
     path: ERoute.AUTH,
     component: AuthView
+  },
+  {
+    exact: true,
+    path: '/OptionsView',
+    component: OptionsView
+  },
+  {
+    exact: true,
+    path: '/LaunchView',
+    component: LaunchView
   }
+
 ];
 
 const renderRoutes = (routes: RouteConfig[]): JSX.Element => (
