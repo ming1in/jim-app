@@ -3,8 +3,14 @@ import React from 'react';
 import { Box, Typography, Button } from '@material-ui/core';
 import { getUsers } from '../../api/users';
 //import { getExercises } from '../../api/exercises'
+import { Dispatch } from 'react';
+import { SetStateAction } from 'react';
 
-function LaunchView() {
+interface ILaunchViewProps {
+  setStep: Dispatch<SetStateAction<string>>;
+}
+
+function LaunchView(props: ILaunchViewProps) {
   return (
     <Box>
       <Typography>Workout Titles</Typography>

@@ -27,7 +27,7 @@ function WorkoutView() {
       case 'build':
         return <BuildView setStep={setStep}/>;
       case 'launch':
-         return <LaunchView />;
+         return <LaunchView setStep={setStep}/>;
       default:
         return null;
     }

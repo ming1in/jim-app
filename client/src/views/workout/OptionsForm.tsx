@@ -67,7 +67,7 @@ function OptionsForm(props: IOptionsFormProps) {
                 touched,
                 values,
             }) => (
-                <form onSubmit={handleSubmit}>
+                <form noValidate onSubmit={handleSubmit}>
                     <Grid item spacing={3}>
                         <TextField
                             name="numExercises"
