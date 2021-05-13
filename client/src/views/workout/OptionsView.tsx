@@ -21,6 +21,12 @@ import {
 import { getUsers } from '../../api/users';
 // import { FormControl } from '@material-ui/core';
 import OptionsForm from "./OptionsForm";
+import { Dispatch } from 'react';
+import { SetStateAction } from 'react';
+
+interface IOptionsViewProps {
+  setStep: Dispatch<SetStateAction<string>>;
+}
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -30,7 +36,7 @@ const useStyles = makeStyles((theme) =>
     })
 );
 
-function OptionsView() {
+function OptionsView(props: IOptionsViewProps) {
     const classes = useStyles();
     // const [muscleGroup, setMuscleGroup] = React.useState('');
     // const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
@@ -46,7 +52,7 @@ function OptionsView() {
                     <Typography align="center">Pick Options</Typography>
 
                     <CardContent>
-                        <OptionsForm />
+                        <OptionsForm setStep={props.setStep}/>
                     </CardContent>
                 </Card>
             </Container>

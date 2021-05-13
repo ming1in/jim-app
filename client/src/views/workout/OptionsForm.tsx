@@ -20,12 +20,17 @@ import {
 } from "@material-ui/core";
 import * as Yup from 'yup';
 import { Formik } from "formik";
+import { Dispatch } from 'react';
+import { SetStateAction } from 'react';
 
+interface IOptionsFormProps {
+  setStep: Dispatch<SetStateAction<string>>;
+}
 /**
  * this function creates the options form.
  * @returns 
  */
-function OptionsForm() {
+function OptionsForm(props: IOptionsFormProps) {
     // const [group, setGroup] = React.useState('');
     // const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     //     setGroup(event.target.value as string);
@@ -133,6 +138,7 @@ function OptionsForm() {
                             size="large"
                             type="submit"
                             variant="contained"
+                            onClick={() => props.setStep('launch')}
                         >
                             {isLoading ? <CircularProgress /> : "Go to Workout"}
                         </Button>
