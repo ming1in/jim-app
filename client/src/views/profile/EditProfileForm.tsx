@@ -27,9 +27,6 @@ import { Formik } from "formik";
  */
 function EditProfileForm() {
     const [goal, setGoal] = React.useState('');
-    const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-        setGoal(event.target.value as string);
-    };
     const [gender, setGender] = React.useState('');
     const handleChangeG = (event: React.ChangeEvent<{ value: unknown }>) => {
         setGender(event.target.value as string);
@@ -37,7 +34,7 @@ function EditProfileForm() {
     const [isLoading, setIsLoading] = useState(false);
     return (
         <Formik initialValues={{
-            email: ""
+            email: "", goal:"", gender:""
         }}
             /*validationSchema={Yup.object().shape({
                 email: Yup.string()
@@ -68,6 +65,9 @@ function EditProfileForm() {
                 <form onSubmit={handleSubmit}>
                     <Grid item spacing={3}>
                         <TextField id="standard-basic" label="Email" />
+                    </Grid>
+                    <Grid item spacing={3}>
+                        <TextField id="standard-basic" label="City" />
                     </Grid>
                     <Grid item spacing={3}>
                         <TextField id="standard-number" label="Weight" type="number"

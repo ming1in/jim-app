@@ -18,6 +18,7 @@ const AuthView = lazy(() => import('./views/auth/AuthView'));
 const OptionsView = lazy(() => import('./views/workout/OptionsView'));
 const LaunchView = lazy(() => import('./views/workout/LaunchView'));
 const BuildView = lazy(() => import('./views/workout/BuildView'));
+const EditProfileView = lazy(() => import('./views/profile/EditProfileView'));
 
 const routesConfig: RouteConfig[] = [
   {
@@ -42,7 +43,7 @@ const routesConfig: RouteConfig[] = [
   },
   {
     exact: true,
-    path: '/OptionsView',
+    path: ERoute.OPTIONS,
     component: OptionsView
   },
   {
@@ -52,8 +53,13 @@ const routesConfig: RouteConfig[] = [
   },
   {
     exact: true,
-    path: '/BuildView',
-    component: BuildView
+    path: ERoute.BUILD,
+    component: BuildView,
+  },
+  {
+  exact: true,
+  path: ERoute.EDITPROFILE,
+  component: EditProfileView,
   }
 ];
 
