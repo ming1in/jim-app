@@ -18,7 +18,6 @@ import {
   Container,
   createStyles
 } from '@material-ui/core';
-import { getUsers } from '../../api/users';
 // import { FormControl } from '@material-ui/core';
 import OptionsForm from "./OptionsForm";
 
