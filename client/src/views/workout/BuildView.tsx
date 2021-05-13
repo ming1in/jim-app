@@ -1,13 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-import { Box, Typography, Button } from '@material-ui/core';
+import { Box, Typography, Button, Container } from '@material-ui/core';
 import { getUsers } from '../../api/users';
+import WorkoutView from './WorkoutView';
+import LaunchView from './LaunchView';
+import { Dispatch } from 'react';
+import { SetStateAction } from 'react';
 
-function BuildView() {
+interface IBuildViewProps {
+  setStep: Dispatch<SetStateAction<string>>;
+}
+
+function BuildView(props: IBuildViewProps) {
   return (
     <Box>
-      <Typography>Build Your Own Workout Mode</Typography>
-      <Button variant="contained" href="LaunchView">Continue to Workout</Button>
+      {/* <Container maxWidth="sm" >
+        <Button variant="contained" href="./workout" color="secondary">Go Back to Workout Choices</Button>
+      </Container> */}
+      <Typography>Build Your Own Workout</Typography>
+      <Button variant="contained" onClick={() => props.setStep('launch')}>Continue to Workout</Button>
     </Box>
   );
 }
