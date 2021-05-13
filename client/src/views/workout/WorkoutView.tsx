@@ -23,7 +23,7 @@ function WorkoutView() {
   const getStepContent = () => {
     switch (step) {
       case 'options':
-        return <OptionsView />;
+        return <OptionsView setStep={setStep}/>;
       case 'build':
         return <BuildView setStep={setStep}/>;
       case 'launch':

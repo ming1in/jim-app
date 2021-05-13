@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-//import { IExercises } from '../interfaces/exercises';
+//import { IExercise } from '../interfaces/user';
 
 const baseUrl = 'http://localhost:5000';
 
