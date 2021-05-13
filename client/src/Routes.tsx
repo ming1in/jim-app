@@ -1,10 +1,13 @@
 import React, { Fragment, lazy, LazyExoticComponent, Suspense } from "react";
 
 import { Redirect, Route, Switch } from "react-router-dom";
+
 import { ERoute } from "./enums/route";
 import LoadingView from "./views/util/LoadingView";
 import AuthGuard from "./components/AuthGuard";
 import GuestGuard from "./components/GuestGuard";
+import RegistrationGuard from "./components/RegistrationGuard";
+
 interface RouteConfig {
   exact: boolean;
   path: string;
@@ -44,7 +47,7 @@ const routesConfig: RouteConfig[] = [
   {
     exact: true,
     path: ERoute.REGISTER,
-    guard: AuthGuard,
+    guard: RegistrationGuard,
     component: RegistrationView,
   },
 ];

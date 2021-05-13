@@ -15,7 +15,10 @@ import {
   createStyles,
   TextField,
   MenuItem,
+  FormHelperText
 } from "@material-ui/core";
+
+import useAuth from "../../../hooks/useAuth";
 
 const genderMenuItems = ["Male", "Female"];
 const goalMenuItems = ["Weight loss", "Core/Abs", "Bicep"];
@@ -30,28 +33,45 @@ const useStyles = makeStyles((theme) =>
 );
 
 export default function RegistrationForm() {
+  const auth = useAuth()
   const classes = useStyles();
 
-  const [isLoading, setIsLoading] = useState(false);
+  const handleRegister = (details: any) => {
+    auth.register.mutate(details)
+  }
 
   return (
     <Formik
       initialValues={{
-        firstName: '',
-        lastName: '',
-        gender: '',
-        goal: '',
-        height: 0,
-        weight: 0,
-        city: '',
-        age: 0,
+        firstName: "",
+        lastName: "",
+        gender: "",
+        goal: "",
+        height: null,
+        weight: null,
+        city: "",
+        age: null,
       }}
-      validationSchema={Yup.object().shape({})}
+      validationSchema={Yup.object().shape({
+        firstName: Yup.string().required("Please enter your first name"),
+        lastName: Yup.string().required("Please enter your last name"),
+        gender: Yup.string().required("Please enter your gender"),
+        goal: Yup.string().required("Please enter your goal"),
+        height: Yup.number()
+          .min(0, "Invalid height")
+          .required("Please enter your height"),
+        weight: Yup.number()
+          .min(0, "Invalid weight")
+          .required("Please enter your weight"),
+        city: Yup.string().required("Please enter a city"),
+        age: Yup.number()
+          .min(0, "Invalid age")
+          .required("Please enter your age"),
+      })}
       onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
-        setIsLoading(true);
         try {
           setSubmitting(true);
-          console.log(values)
+          handleRegister(values);
         } catch (err) {
           setStatus({ success: false });
           setErrors(err);
@@ -102,7 +122,6 @@ export default function RegistrationForm() {
               />
             </Box>
           </Box>
-
           <Box display="flex">
             <Box mr={1} width="50%">
               <FormControl
@@ -119,11 +138,15 @@ export default function RegistrationForm() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   labelWidth={60}
+                  type="number"
                   endAdornment={
                     <InputAdornment position="end">inch(es)</InputAdornment>
                   }
                 />
               </FormControl>
+              {Boolean(Boolean(touched.height && errors.height)) && (
+                <FormHelperText error>{errors.height}</FormHelperText>
+              )}
             </Box>
             <Box ml={1} width="50%">
               <FormControl
@@ -131,23 +154,26 @@ export default function RegistrationForm() {
                 variant="outlined"
                 className={classes.margin}
               >
-                <InputLabel htmlFor="height-input">Weight</InputLabel>
+                <InputLabel htmlFor="weight-input">Weight</InputLabel>
                 <OutlinedInput
-                  id="height-input"
-                  name="height"
-                  error={Boolean(touched.height && errors.height)}
-                  value={values.height}
+                  id="weight-input"
+                  name="weight"
+                  error={Boolean(touched.weight && errors.weight)}
+                  value={values.weight}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  type="number"
                   labelWidth={60}
                   endAdornment={
                     <InputAdornment position="end">lbs</InputAdornment>
                   }
                 />
               </FormControl>
+              {Boolean(Boolean(touched.height && errors.height)) && (
+                <FormHelperText error>{errors.height}</FormHelperText>
+              )}
             </Box>
           </Box>
-
           <Box display="flex">
             <Box mr={1} width="50%">
               <TextField
@@ -178,6 +204,7 @@ export default function RegistrationForm() {
                 placeholder="Age"
                 margin="normal"
                 name="age"
+                type="number"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.age}
@@ -225,7 +252,7 @@ export default function RegistrationForm() {
               type="submit"
               variant="contained"
             >
-              {isLoading ? <CircularProgress /> : "Done"}
+              {auth.register.isLoading ? <CircularProgress /> : "Done"}
             </Button>
           </Box>
         </form>

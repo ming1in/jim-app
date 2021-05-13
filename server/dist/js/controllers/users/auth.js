@@ -18,15 +18,12 @@ const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, password } = req.body;
         const user = yield user_1.default.find({ email });
+        if (user.length !== 0)
+            res.status(404).json('User already exists');
         if (user.length === 0) {
-            console.log('save user');
             const newUser = new user_1.default({ email, password });
             yield newUser.save();
-            console.log(newUser);
             res.status(201).json(newUser);
-        }
-        else {
-            res.status(404).json({ message: 'User already exists' });
         }
     }
     catch (error) {
@@ -36,8 +33,13 @@ const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.signUp = signUp;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        res.status(201)
-            .json({ message: "LOGINING UP AA USER" });
+        const { email, password } = req.body;
+        const user = (yield user_1.default.find({ email }))[0];
+        if (!user)
+            res.status(404).json({ error: 'User does not exist' });
+        if (user.password !== password)
+            res.status(404).json({ error: 'Incorrect password' });
+        res.status(201).json(user);
     }
     catch (error) {
         throw error;
@@ -46,8 +48,11 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.login = login;
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        res.status(201)
-            .json({ message: "REGISTERING UP AA USER" });
+        const currentUser = yield user_1.default.findById(req.body._id);
+        yield (currentUser === null || currentUser === void 0 ? void 0 : currentUser.update(Object.assign({}, req.body)));
+        const updatedCurrentUser = yield user_1.default.findById(req.body._id);
+        console.log(req.body);
+        res.status(201).json(updatedCurrentUser);
     }
     catch (error) {
         throw error;

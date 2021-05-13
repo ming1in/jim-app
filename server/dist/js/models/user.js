@@ -45,6 +45,11 @@ const userSchema = new mongoose_1.Schema({
         default: null,
         required: true,
     },
+    registeredAt: {
+        type: String,
+        default: null,
+        required: true,
+    },
     gender: {
         type: String,
         default: null,

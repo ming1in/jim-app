@@ -22,6 +22,8 @@ function AuthProvider(props: IAuthProviderProps) {
     if(currentUser) localStorage.setItem("currentUser", JSON.stringify(currentUser));
   }, [currentUser])
 
+  console.log(currentUser)
+
   return (
     <AuthContext.Provider value={{ currentUser, setCurrentUser }}>
       {props.children}

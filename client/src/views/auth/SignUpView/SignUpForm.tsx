@@ -20,8 +20,8 @@ interface ISignUpFormValues {
 function SignUpForm() {
   const { signup } = useAuth();
 
-  const handleSignUp = async (values: ISignUpFormValues) => {
-    await signup.mutate({ email: values.email, password: values.password });
+  const handleSignUp = async ({ email, password }: ISignUpFormValues) => {
+    await signup.mutate({ email, password });
   };
 
   return (

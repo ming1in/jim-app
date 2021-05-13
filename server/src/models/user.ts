@@ -55,6 +55,12 @@ const userSchema: Schema = new Schema(
       required: true,
     },
 
+    registeredAt: {
+      type: String,
+      default: null,
+      required: true,
+    },
+
     gender: {
       type: String,
       default: null,

@@ -10,10 +10,15 @@ import {
   FormHelperText,
   Typography,
 } from "@material-ui/core";
+import useAuth from "../../../hooks/useAuth";
+import { IAuthCredentials } from "../../../interfaces/auth";
 
 export default function LoginForm() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const auth = useAuth();
+
+  const handleLogin = async(credentials: IAuthCredentials) => {
+    await auth.login.mutate(credentials);
+  };
 
   return (
     <Formik
@@ -29,10 +34,9 @@ export default function LoginForm() {
         password: Yup.string().min(7).max(255).required("Password is required"),
       })}
       onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
-        setIsLoading(true);
         try {
           setSubmitting(true);
-          // signin(values);
+          handleLogin(values);
         } catch (err) {
           setStatus({ success: false });
           setErrors(err);
@@ -93,9 +97,11 @@ export default function LoginForm() {
               type="submit"
               variant="contained"
             >
-              {isLoading ? <CircularProgress /> : "Sign in"}
+              {auth.login.isLoading ? <CircularProgress /> : "Sign in"}
             </Button>
-            {Boolean(error) && <FormHelperText error>{error}</FormHelperText>}
+            {Boolean(auth.login.isError) && (
+              <FormHelperText error>Something went wrong, check your credentials and try again</FormHelperText>
+            )}
           </Box>
         </form>
       )}
