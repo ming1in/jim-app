@@ -2,7 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const userSchema = new mongoose_1.Schema({
-    name: {
+    firstName: {
+        type: String,
+        required: true,
+    },
+    lastName: {
         type: String,
         required: true,
     },
@@ -16,6 +20,18 @@ const userSchema = new mongoose_1.Schema({
     },
     weight: {
         type: Number,
+        required: true,
+    },
+    city: {
+        type: String,
+        required: true,
+    },
+    age: {
+        type: Number,
+        required: true,
+    },
+    gender: {
+        type: String,
         required: true,
     }
 }, { timestamps: true });

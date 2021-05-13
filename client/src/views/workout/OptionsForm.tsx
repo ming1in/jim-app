@@ -138,7 +138,7 @@ function OptionsForm(props: IOptionsFormProps) {
                             size="large"
                             type="submit"
                             variant="contained"
-                            onClick={() => props.setStep('launch')}
+                            onSubmit={() => props.setStep('launch')}
                         >
                             {isLoading ? <CircularProgress /> : "Go to Workout"}
                         </Button>
