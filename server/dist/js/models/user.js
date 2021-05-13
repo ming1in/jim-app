@@ -6,13 +6,17 @@ const userSchema = new mongoose_1.Schema({
         type: String,
         required: true,
     },
-    description: {
+    goals: {
         type: String,
         required: true,
     },
-    status: {
-        type: Boolean,
+    height: {
+        type: Number,
         required: true,
     },
+    weight: {
+        type: Number,
+        required: true,
+    }
 }, { timestamps: true });
 exports.default = mongoose_1.model("User", userSchema);
