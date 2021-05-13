@@ -1,17 +1,30 @@
 import React from 'react';
 
-import { Box, Typography, Button } from '@material-ui/core';
+import { Box, Typography, Button, Grid, ButtonGroup } from '@material-ui/core';
 import { getUsers } from '../../api/users';
 
 //import { getExercises } from '../../api/exercises'
+import { Dispatch } from 'react';
+import { SetStateAction } from 'react';
 
-function LaunchView() {
+interface ILaunchViewProps {
+  setStep: Dispatch<SetStateAction<string>>;
+}
+
+function LaunchView(props: ILaunchViewProps) {
   return (
     <Box>
-      <Typography>Workout Titles</Typography>
-      <Typography>{}</Typography>
-      <Button variant="contained" href="">Start Workout</Button>
-      <Button variant="contained" href="">Stop Workout</Button>
+      <Grid container direction="column" spacing={3} alignItems="center">
+        <Grid item>
+          <Typography>Workout Titles</Typography>
+        </Grid>
+        <Grid item alignItems="center">
+          <ButtonGroup>
+          <Button variant="contained" href="">Start Workout</Button>
+          <Button variant="contained" href="">Stop Workout</Button>
+          </ButtonGroup>
+        </Grid>
+      </Grid>
     </Box>
   );
 }

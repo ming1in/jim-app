@@ -2,6 +2,7 @@ import React from 'react';
 
 import {
     Box,
+    Paper,
     Typography,
     TextField,
     InputLabel,
@@ -43,7 +44,7 @@ function OptionsView(props: IOptionsViewProps) {
     //   setMuscleGroup(event.target.value as string);
     // };
     return (
-        <Box display="flex" flexDirection="column">
+        <Paper>
             {/* <Container maxWidth="sm" className = {classes.container}>
                 <Button variant="contained" href="./workout" color="secondary">Go Back to Workout Choices</Button>
             </Container> */}
@@ -56,7 +57,7 @@ function OptionsView(props: IOptionsViewProps) {
                     </CardContent>
                 </Card>
             </Container>
-        </Box>
+        </Paper>
     );
 }
 

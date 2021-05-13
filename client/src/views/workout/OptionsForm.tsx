@@ -67,7 +67,7 @@ function OptionsForm(props: IOptionsFormProps) {
                 touched,
                 values,
             }) => (
-                <form onSubmit={handleSubmit}>
+                <form noValidate onSubmit={handleSubmit}>
                     <Grid item spacing={3}>
                         <TextField
                             name="numExercises"
@@ -131,7 +131,7 @@ function OptionsForm(props: IOptionsFormProps) {
                         justifyContent="center"
                         flexDirection="column"
                     >
-                        <Button
+{/*                         <Button
                             color="secondary"
                             disabled={isSubmitting}
                             fullWidth
@@ -141,7 +141,8 @@ function OptionsForm(props: IOptionsFormProps) {
                             onSubmit={() => props.setStep('launch')}
                         >
                             {isLoading ? <CircularProgress /> : "Go to Workout"}
-                        </Button>
+                        </Button> */}
+                        <Button variant="contained" onClick={() => props.setStep('launch')}>Continue to Workout</Button>
                     </Box>
                 </form>
             )}

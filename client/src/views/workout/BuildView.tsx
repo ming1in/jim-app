@@ -1,24 +1,66 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
-import { Box, Typography, Button, Container } from '@material-ui/core';
+import {
+  Box, 
+  Checkbox,
+  Typography,
+  Button,
+  Container,
+  Grid,
+  Paper,
+  Card,
+  CardContent,
+  FormControlLabel,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell
+} from '@material-ui/core';
+import {spacing} from '@material-ui/system';
 import { getUsers } from '../../api/users';
 import WorkoutView from './WorkoutView';
 import LaunchView from './LaunchView';
-import { Dispatch } from 'react';
-import { SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
 interface IBuildViewProps {
   setStep: Dispatch<SetStateAction<string>>;
 }
 
 function BuildView(props: IBuildViewProps) {
+  const temp = {name:"abs",category:["crunches", "sit ups", "push ups"]};
   return (
-    <Box>
-      {/* <Container maxWidth="sm" >
-        <Button variant="contained" href="./workout" color="secondary">Go Back to Workout Choices</Button>
-      </Container> */}
-      <Typography>Build Your Own Workout</Typography>
-      <Button variant="contained" onClick={() => props.setStep('launch')}>Continue to Workout</Button>
+
+    <Box display="flex" justifyContent="center" flexDirection="column">
+      <Grid container direction="column" spacing={3} alignItems="center">
+        <Grid item>
+            <Paper>
+              <Box p={5}>
+              <Table>
+                <TableHead>
+                <Typography color="textSecondary" align="center">Selected Category: {temp.name}</Typography>
+                </TableHead>
+                <TableBody>
+                  {temp.category.map(n => {
+                    return (
+                      <TableRow>
+                        <TableCell>
+                        <FormControlLabel control={<Checkbox name="chosenExercises"/> } label={n}/>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+              </Box>
+            </Paper>
+        </Grid>
+        <Grid item>
+          <Box display="flex" margin={5}>
+            <Button variant="contained" onClick={() => props.setStep('launch')}>Continue to Workout</Button>
+          </Box>
+        </Grid>
+      </Grid>
     </Box>
   );
 }
