@@ -6,6 +6,7 @@ import { createBrowserHistory } from 'history';
 
 import { themeConfig } from './theme';
 import Routes from './Routes';
+import MainLayout from './layouts/MainLayout';
 
 function App() {
   const history = createBrowserHistory();
@@ -14,7 +15,9 @@ function App() {
     <ThemeProvider theme={themeConfig}>
       <Router history={history}>
         <CssBaseline />
-        <Routes />
+        <MainLayout>
+          <Routes />
+        </MainLayout>
       </Router>
     </ThemeProvider>
   );

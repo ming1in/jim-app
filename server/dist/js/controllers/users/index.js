@@ -28,9 +28,14 @@ const addUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const body = req.body;
         const user = new user_1.default({
-            name: body.name,
-            description: body.description,
-            status: body.status,
+            firstName: body.firstName,
+            lastName: body.lastName,
+            city: body.city,
+            weight: body.weight,
+            height: body.height,
+            age: body.age,
+            gender: body.gender,
+            goals: body.goals
         });
         const newUser = yield user.save();
         const allUsers = yield user_1.default.find();
