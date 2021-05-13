@@ -13,6 +13,7 @@ import { Link as RouterLink } from "react-router-dom";
 
 import SignUpForm from "./SignUpForm";
 import { ERoute } from "../../../enums/route";
+import useAuth from "../../../hooks/useAuth";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) =>
 
 function SignUpView() {
   const classes = useStyles();
+
 
   return (
     <Box display="flex" height="100%">

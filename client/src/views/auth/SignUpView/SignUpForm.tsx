@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import * as Yup from "yup";
 import { Formik } from "formik";
 import {
   Box,
   Button,
-  TextField,
   CircularProgress,
+  TextField,
   Typography,
 } from "@material-ui/core";
-import useUsers from "../../../hooks/useUsers";
+import useAuth from "../../../hooks/useAuth";
 
 interface ISignUpFormValues {
   email: string;
@@ -18,11 +18,10 @@ interface ISignUpFormValues {
 }
 
 function SignUpForm() {
-  const users = useUsers()
-  const [isLoading, setIsLoading] = useState(false);
+  const { signup } = useAuth();
 
-  const handleSignUp = (values: ISignUpFormValues) => {
-    console.log(values);
+  const handleSignUp = async (values: ISignUpFormValues) => {
+    await signup.mutate({ email: values.email, password: values.password });
   };
 
   return (
@@ -38,10 +37,9 @@ function SignUpForm() {
           .max(255)
           .required("Email is required"),
         password: Yup.string().min(7).max(255).required("Password is required"),
-        passwordConfirmation: Yup.string().oneOf(
-          [Yup.ref("password"), null],
-          "Passwords must match"
-        ),
+        passwordConfirmation: Yup.string()
+          .oneOf([Yup.ref("password"), null], "Passwords must match")
+          .required("Password is required"),
       })}
       onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
         try {
@@ -124,7 +122,7 @@ function SignUpForm() {
               type="submit"
               variant="contained"
             >
-              {isLoading ? <CircularProgress /> : "Create Account"}
+              {signup.isLoading ? <CircularProgress /> : "Create Account"}
             </Button>
           </Box>
         </form>

@@ -8,14 +8,49 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.register = exports.login = exports.signUp = void 0;
+const user_1 = __importDefault(require("../../models/user"));
 const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { email, password } = req.body;
+        const user = yield user_1.default.find({ email });
+        if (user.length === 0) {
+            console.log('save user');
+            const newUser = new user_1.default({ email, password });
+            yield newUser.save();
+            console.log(newUser);
+            res.status(201).json(newUser);
+        }
+        else {
+            res.status(404).json({ message: 'User already exists' });
+        }
+    }
+    catch (error) {
+        res.status(404).json({ message: error });
+    }
 });
 exports.signUp = signUp;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        res.status(201)
+            .json({ message: "LOGINING UP AA USER" });
+    }
+    catch (error) {
+        throw error;
+    }
 });
 exports.login = login;
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        res.status(201)
+            .json({ message: "REGISTERING UP AA USER" });
+    }
+    catch (error) {
+        throw error;
+    }
 });
 exports.register = register;

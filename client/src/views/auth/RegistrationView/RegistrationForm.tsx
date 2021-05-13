@@ -18,7 +18,7 @@ import {
 } from "@material-ui/core";
 
 const genderMenuItems = ["Male", "Female"];
-const goalMenuItems = ["Weight loss", "Core/Abs", "Bicep"]
+const goalMenuItems = ["Weight loss", "Core/Abs", "Bicep"];
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -37,18 +37,21 @@ export default function RegistrationForm() {
   return (
     <Formik
       initialValues={{
-        gender: null,
-        goal: null,
+        firstName: '',
+        lastName: '',
+        gender: '',
+        goal: '',
         height: 0,
         weight: 0,
+        city: '',
+        age: 0,
       }}
-      validationSchema={Yup.object().shape({
-        
-      })}
+      validationSchema={Yup.object().shape({})}
       onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
         setIsLoading(true);
         try {
           setSubmitting(true);
+          console.log(values)
         } catch (err) {
           setStatus({ success: false });
           setErrors(err);
@@ -69,53 +72,131 @@ export default function RegistrationForm() {
           <Box mb={3} mr={10}>
             <Typography variant="h4">Tell us a bit about you</Typography>
           </Box>
-          <FormControl fullWidth variant="outlined" className={classes.margin}>
-            <InputLabel htmlFor="height-input">Height</InputLabel>
-            <OutlinedInput
-              id="height-input"
-              name="height"
-              error={Boolean(touched.height && errors.height)}
-              value={values.height}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              labelWidth={60}
-              endAdornment={
-                <InputAdornment position="end">inch(es)</InputAdornment>
-              }
-            />
-          </FormControl>
-          <FormControl fullWidth variant="outlined" className={classes.margin}>
-            <InputLabel htmlFor="height-input">Weight</InputLabel>
-            <OutlinedInput
-              id="height-input"
-              name="height"
-              error={Boolean(touched.height && errors.height)}
-              value={values.height}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              labelWidth={60}
-              endAdornment={<InputAdornment position="end">lbs</InputAdornment>}
-            />
-          </FormControl>
+          <Box display="flex">
+            <Box mr={1} width="50%">
+              <TextField
+                error={Boolean(touched.firstName && errors.firstName)}
+                fullWidth
+                helperText={touched.firstName && errors.firstName}
+                placeholder="First name"
+                margin="normal"
+                name="firstName"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.firstName}
+                variant="outlined"
+              />
+            </Box>
+            <Box ml={1} width="50%">
+              <TextField
+                error={Boolean(touched.lastName && errors.lastName)}
+                fullWidth
+                helperText={touched.lastName && errors.lastName}
+                placeholder="Last name"
+                margin="normal"
+                name="lastName"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.lastName}
+                variant="outlined"
+              />
+            </Box>
+          </Box>
+
+          <Box display="flex">
+            <Box mr={1} width="50%">
+              <FormControl
+                fullWidth
+                variant="outlined"
+                className={classes.margin}
+              >
+                <InputLabel htmlFor="height-input">Height</InputLabel>
+                <OutlinedInput
+                  id="height-input"
+                  name="height"
+                  error={Boolean(touched.height && errors.height)}
+                  value={values.height}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  labelWidth={60}
+                  endAdornment={
+                    <InputAdornment position="end">inch(es)</InputAdornment>
+                  }
+                />
+              </FormControl>
+            </Box>
+            <Box ml={1} width="50%">
+              <FormControl
+                fullWidth
+                variant="outlined"
+                className={classes.margin}
+              >
+                <InputLabel htmlFor="height-input">Weight</InputLabel>
+                <OutlinedInput
+                  id="height-input"
+                  name="height"
+                  error={Boolean(touched.height && errors.height)}
+                  value={values.height}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  labelWidth={60}
+                  endAdornment={
+                    <InputAdornment position="end">lbs</InputAdornment>
+                  }
+                />
+              </FormControl>
+            </Box>
+          </Box>
+
+          <Box display="flex">
+            <Box mr={1} width="50%">
+              <TextField
+                fullWidth
+                select
+                error={Boolean(touched.gender && errors.gender)}
+                helperText={touched.gender && errors.gender}
+                label="Gender"
+                variant="outlined"
+                margin="normal"
+                name="gender"
+                value={values.gender}
+                onBlur={handleBlur}
+                onChange={handleChange}
+              >
+                {genderMenuItems.map((genderItem) => (
+                  <MenuItem key={genderItem} value={genderItem}>
+                    {genderItem}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </Box>
+            <Box ml={1} width="50%">
+              <TextField
+                error={Boolean(touched.age && errors.age)}
+                fullWidth
+                helperText={touched.age && errors.age}
+                placeholder="Age"
+                margin="normal"
+                name="age"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.age}
+                variant="outlined"
+              />
+            </Box>
+          </Box>
           <TextField
+            error={Boolean(touched.city && errors.city)}
             fullWidth
-            select
-            error={Boolean(touched.gender && errors.gender)}
-            helperText={touched.gender && errors.gender}
-            label="Gender"
-            variant="outlined"
+            helperText={touched.city && errors.city}
+            placeholder="City"
             margin="normal"
-            name="gender"
-            value={values.gender}
+            name="city"
             onBlur={handleBlur}
             onChange={handleChange}
-          >
-            {genderMenuItems.map((genderItem) => (
-              <MenuItem key={genderItem} value={genderItem}>
-                {genderItem}
-              </MenuItem>
-            ))}
-          </TextField>
+            value={values.city}
+            variant="outlined"
+          />
           <TextField
             fullWidth
             select

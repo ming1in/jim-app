@@ -1,22 +1,31 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
-import useUsers from "../hooks/useUsers";
+import { IUser } from "../interfaces/user";
 
 interface IAuthProviderProps {
   children: React.ReactNode;
 }
 
-interface IAuthContext {}
+interface IAuthContext {
+  currentUser?: IUser;
+  setCurrentUser: React.Dispatch<React.SetStateAction<IUser>>
+}
 
-export const AuthContext = createContext(null);
+export const AuthContext = createContext<IAuthContext | null>(null);
 
 function AuthProvider(props: IAuthProviderProps) {
-  const users = useUsers();
+  const currentUserCached = JSON.parse(localStorage.getItem("currentUser")!);
 
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState<IUser>(currentUserCached || null);
+
+  useEffect(() => {
+    if(currentUser) localStorage.setItem("currentUser", JSON.stringify(currentUser));
+  }, [currentUser])
 
   return (
-    <AuthContext.Provider value={null}>{props.children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ currentUser, setCurrentUser }}>
+      {props.children}
+    </AuthContext.Provider>
   );
 }
 

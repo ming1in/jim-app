@@ -10,6 +10,8 @@ const routes_1 = __importDefault(require("./routes"));
 const app = express_1.default();
 const PORT = process.env.PORT || 4000;
 app.use(cors_1.default());
+app.use(express_1.default.urlencoded({ extended: true }));
+app.use(express_1.default.json());
 app.use(routes_1.default);
 const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@jim-app.ujtjl.mongodb.net/main?authSource=admin&replicaSet=atlas-ehvnq7-shard-0&readPreference=primary&appname=mongodb-vscode%200.5.0&ssl=true`;
 const options = { useNewUrlParser: true, useUnifiedTopology: true };

@@ -1,7 +1,11 @@
 import { Router } from "express"
+
+import { login, register, signUp } from "../controllers/users/auth"
 import { getUsers, addUser, updateUser, deleteUser } from "../controllers/users/index"
 
 const router: Router = Router()
+
+
 
 router.get("/users", getUsers)
 
@@ -13,6 +17,11 @@ router.delete("/delete-user/:id", deleteUser)
 
 router.post('/')
 
-router.get("/signup", )
+router.post("/auth/signup", signUp)
+
+router.post("/auth/login", login)
+
+router.post("/auth/register", register)
+
 
 export default router
