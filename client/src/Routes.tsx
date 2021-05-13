@@ -20,6 +20,7 @@ const LaunchView = lazy(() => import('./views/workout/LaunchView'));
 const BuildView = lazy(() => import('./views/workout/BuildView'));
 const EditProfileView = lazy(() => import('./views/profile/EditProfileView'));
 
+
 const routesConfig: RouteConfig[] = [
   {
     exact: true,
@@ -61,6 +62,7 @@ const routesConfig: RouteConfig[] = [
   path: ERoute.EDITPROFILE,
   component: EditProfileView,
   }
+
 ];
 
 const renderRoutes = (routes: RouteConfig[]): JSX.Element => (
