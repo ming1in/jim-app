@@ -23,7 +23,6 @@ import {
     Paper
 }
     from '@material-ui/core';
-import { getUsers } from '../../api/users';
 import EditProfileForm from "./EditProfileForm";
 import { createDeflateRaw } from 'node:zlib';
 

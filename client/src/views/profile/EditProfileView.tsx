@@ -22,7 +22,6 @@ import {
     createStyles
 }
     from '@material-ui/core';
-import { getUsers } from '../../api/users';
 import EditProfileForm from "./EditProfileForm";
 
 const useStyles = makeStyles((theme) =>
