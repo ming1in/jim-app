@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Box, Typography, Button, Card, CardContent, Container, makeStyles, createStyles } from '@material-ui/core';
 import { getUsers } from '../../api/users';
 import { MenuItem } from 'material-ui';
+import OptionsView from './OptionsView';
+import BuildView from './BuildView';
+import LaunchView from './LaunchView';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -15,6 +18,21 @@ const useStyles = makeStyles((theme) =>
 
 function WorkoutView() {
   const classes = useStyles();
+  var [step, setStep] = useState("");
+
+  const getStepContent = () => {
+    switch (step) {
+      case 'options':
+        return <OptionsView />;
+      case 'build':
+        return <BuildView setStep={setStep}/>;
+      case 'launch':
+         return <LaunchView />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <Box display="flex" justifyContent="center" flexDirection="column">
       <Container maxWidth="sm" className={classes.container}>
@@ -22,8 +40,9 @@ function WorkoutView() {
       </Container>
       <Card>
         <CardContent>
-          <Button variant="contained" href="./BuildView" color="primary">Build A Custom Workout</Button>
-          <Button variant="contained" href="./OptionsView" color="secondary">Select A Pre-Made Workout</Button>
+          <Button variant="contained" onClick={() => setStep('build')} color="primary">Build A Custom Workout</Button>
+          <Button variant="contained" onClick={() => setStep('options')} color="secondary">Select A Pre-Made Workout</Button>
+          {getStepContent()}
         </CardContent>
       </Card>
     </Box>
