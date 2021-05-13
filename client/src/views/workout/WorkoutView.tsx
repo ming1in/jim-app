@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Box, Typography, Button, Card, CardContent, Container, makeStyles, createStyles } from '@material-ui/core';
+import { Box, Typography, Button, Card, CardContent, Container, makeStyles, createStyles, Grid } from '@material-ui/core';
 import { getUsers } from '../../api/users';
 import { MenuItem } from 'material-ui';
 import OptionsView from './OptionsView';
@@ -23,11 +23,11 @@ function WorkoutView() {
   const getStepContent = () => {
     switch (step) {
       case 'options':
-        return <OptionsView setStep={setStep}/>;
+        return <OptionsView setStep={setStep} />;
       case 'build':
-        return <BuildView setStep={setStep}/>;
+        return <BuildView setStep={setStep} />;
       case 'launch':
-         return <LaunchView setStep={setStep}/>;
+        return <LaunchView setStep={setStep} />;
       default:
         return null;
     }
@@ -35,16 +35,22 @@ function WorkoutView() {
 
   return (
     <Box display="flex" justifyContent="center" flexDirection="column">
-      <Container maxWidth="sm" className={classes.container}>
-        <Typography>Workout Modes</Typography>
-      </Container>
-      <Card>
-        <CardContent>
-          <Button variant="contained" onClick={() => setStep('build')} color="primary">Build A Custom Workout</Button>
-          <Button variant="contained" onClick={() => setStep('options')} color="secondary">Select A Pre-Made Workout</Button>
+      <Grid container direction="column" spacing={3} alignItems="center">
+        <Grid item>
+          <Typography variant="h2" color="textSecondary">Workout Modes</Typography>
+        </Grid>
+        <Grid item>
+          <Box p={3}>
+            <Button size="large" variant="contained" onClick={() => setStep('build')} color="secondary">Build A Custom Workout</Button>
+          </Box>
+        </Grid>
+        <Grid item>
+          <Box p={3}>
+            <Button size="large" variant="contained" onClick={() => setStep('options')} color="secondary">Select A Pre-Made Workout</Button>
+          </Box>
           {getStepContent()}
-        </CardContent>
-      </Card>
+        </Grid>
+      </Grid>
     </Box>
   );
 }
