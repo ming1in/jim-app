@@ -26,7 +26,7 @@ interface IBuildViewProps {
 }
 
 function BuildView(props: IBuildViewProps) {
-  const temp = ["crunches", "sit ups", "push ups"];
+  const temp = {name:"abs",category:["crunches", "sit ups", "push ups"]};
   return (
 
     <Box>
@@ -36,10 +36,10 @@ function BuildView(props: IBuildViewProps) {
             <Card>
               <Table>
                 <TableHead>
-                  <Typography variant="h3" color="textSecondary" align="center">Category List of Exercises</Typography>
+                  <Typography variant="h3" color="textSecondary" align="center">{temp.name}</Typography>
                 </TableHead>
                 <TableBody>
-                  {temp.map(n => {
+                  {temp.category.map(n => {
                     return (
                       <TableRow>
                         <TableCell>
