@@ -16,6 +16,7 @@ app.use(routes_1.default);
 const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@jim-app.ujtjl.mongodb.net/main?authSource=admin&replicaSet=atlas-ehvnq7-shard-0&readPreference=primary&appname=mongodb-vscode%200.5.0&ssl=true`;
 const options = { useNewUrlParser: true, useUnifiedTopology: true };
 mongoose_1.default.set("useFindAndModify", false);
+console.log(uri);
 mongoose_1.default
     .connect(uri, options)
     .then(() => app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`)))

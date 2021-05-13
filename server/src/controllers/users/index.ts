@@ -13,12 +13,17 @@ const getUsers = async (req: Request, res: Response): Promise<void> => {
 
 const addUser = async (req: Request, res: Response): Promise<void> => {
   try {
-    const body = req.body as Pick<IUser, "name" | "description" | "status">
+    const body = req.body as Pick<IUser, "firstName" | "lastName" | "city" | "weight" | "height" | "age" | "gender" | "goals">
 
     const user: IUser = new User({
-      name: body.name,
-      description: body.description,
-      status: body.status,
+      firstName: body.firstName,
+      lastName: body.lastName,
+      city: body.city,
+      weight: body.weight,
+      height: body.height,
+      age: body.age,
+      gender: body.gender,
+      goals: body.goals
     })
 
     const newUser: IUser = await user.save()

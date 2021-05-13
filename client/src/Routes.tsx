@@ -19,6 +19,12 @@ const WorkoutView = lazy(() => import("./views/workout/WorkoutView"));
 const SignUpView = lazy(() => import("./views/auth/SignUpView"));
 const LoginView = lazy(() => import("./views/auth/LoginView"));
 const RegistrationView = lazy(() => import("./views/auth/RegistrationView"));
+const ProfileView = lazy(() => import('./views/profile/ProfileView'));
+const OptionsView = lazy(() => import('./views/workout/OptionsView'));
+const LaunchView = lazy(() => import('./views/workout/LaunchView'));
+const BuildView = lazy(() => import('./views/workout/BuildView'));
+const EditProfileView = lazy(() => import('./views/profile/EditProfileView'));
+
 
 const routesConfig: RouteConfig[] = [
   {
@@ -50,6 +56,31 @@ const routesConfig: RouteConfig[] = [
     guard: RegistrationGuard,
     component: RegistrationView,
   },
+  {
+    exact: true,
+    path: ERoute.PROFILE,
+    component: ProfileView
+  },
+  {
+    exact: true,
+    path: ERoute.OPTIONS,
+    component: OptionsView
+  },
+  {
+    exact: true,
+    path: '/LaunchView',
+    component: LaunchView
+  },
+  {
+    exact: true,
+    path: ERoute.BUILD,
+    component: BuildView,
+  },
+  {
+  exact: true,
+  path: ERoute.EDITPROFILE,
+  component: EditProfileView,
+  }
 ];
 
 const renderRoutes = (routes: RouteConfig[]): JSX.Element => (
