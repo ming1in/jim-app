@@ -8,7 +8,6 @@ import {
     Select,
     MenuItem,
     Grid,
-    FormHelperText,
     InputAdornment,
     Button,
     makeStyles,
@@ -28,6 +27,9 @@ import { Formik } from "formik";
 function EditProfileForm() {
     const [goal, setGoal] = React.useState('');
     const [gender, setGender] = React.useState('');
+    const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+        setGoal(event.target.value as string);
+    };
     const handleChangeG = (event: React.ChangeEvent<{ value: unknown }>) => {
         setGender(event.target.value as string);
     };

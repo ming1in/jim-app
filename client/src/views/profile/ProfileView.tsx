@@ -20,7 +20,6 @@ import {
 import { getUsers } from '../../api/users';
 import EditProfileForm from "./EditProfileForm";
 
-
 const useStyles = makeStyles((theme) =>
     createStyles({
         container: {
@@ -29,8 +28,7 @@ const useStyles = makeStyles((theme) =>
         },
         card: {
             alignItems: "center",
-            color: "primary",
-            variant: "outlined"
+            color: "primary"
         }
     })
 );
@@ -59,39 +57,48 @@ function ProfileView() {
     } else {
         pronouns = "they/them";
     }
+    let randomQuote = ["You can do it!", "The only person stopping you, is you", "Push yourself", "Just do it", "Shoot for the moon, even if you miss, you'll land among the stars"];
+    let chosenRandomQuote = randomQuote[Math.floor(Math.random() * randomQuote.length)];
 
     return (
         <Container className={classes.container}>
-            <Grid container direction="column" alignItems="center">
-                <Grid item>
-                    <Typography gutterBottom variant="h1" component="h2" color="secondary">
-                        👋 Hello, {temp.firstName} {temp.lastName} 
+            <Card>
+                <Grid container direction="column" alignItems="center" spacing={3}>
+                    <Grid item spacing={3}>
+                        <Typography gutterBottom variant="h1" component="h2" color="textPrimary">
+                            👋 Hello, {temp.firstName} {temp.lastName}
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="h4" component="p" color="secondary">
+                            ✨ {chosenRandomQuote} ✨
                     </Typography>
-                </Grid>
-                <Grid item >
-                    <Typography variant="h3" color="textSecondary" component="p">✨ You live in {temp.city}</Typography>
-                </Grid>
-                <Grid item>
-                    <Typography variant="h3" color="textSecondary" component="p">✨ You weigh {temp.weight} kilograms</Typography>
-                </Grid>
-                <Grid item>
-                    <Typography variant="h3" color="textSecondary" component="p">✨ You are {temp.height} inches</Typography>
-                </Grid>
-                <Grid item>
-                    <Typography variant="h3" color="textSecondary" component="p">✨ You are {temp.age} years old</Typography>
-                </Grid>
-                <Grid item>
-                    <Typography variant="h3" color="textSecondary" component="p">✨ Your pronouns are {pronouns}</Typography>
-                </Grid>
-                <Grid item>
-                    <Typography variant="h3" color="textSecondary" component="p">✨ Your goal is {temp.goals.toLowerCase()}</Typography>
-                </Grid>
-                <Grid item>
-                    <Button size="large" variant="contained" color="secondary">
-                        Edit Profile
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="h3" color="textSecondary" component="p">You live in {temp.city}</Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="h3" color="textSecondary" component="p">You weigh {temp.weight} kilograms</Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="h3" color="textSecondary" component="p">You are {temp.height} inches</Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="h3" color="textSecondary" component="p">You are {temp.age} years old</Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="h3" color="textSecondary" component="p">Your pronouns are {pronouns}</Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="h3" color="textSecondary" component="p">Your goal is {temp.goals.toLowerCase()}</Typography>
+                    </Grid>
+                    <Grid item>
+                        <Button size="large" variant="contained" color="secondary">
+                            Edit Profile
                     </Button>
+                    </Grid>
                 </Grid>
-            </Grid>
+            </Card>
         </Container>
     );
 }
