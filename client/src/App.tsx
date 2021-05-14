@@ -14,7 +14,7 @@ function App() {
     <ThemeProvider theme={themeConfig}>
       <Router history={history}>
         <CssBaseline />
-        <Routes />
+          <Routes />
       </Router>
     </ThemeProvider>
   );

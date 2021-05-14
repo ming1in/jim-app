@@ -1,90 +1,66 @@
+/**
+ * EditProfileView will have the form to change 
+ * whatever you want for your thingy
+ */
 import React from 'react';
+import {
+    Box,
+    Typography,
+    TextField,
+    InputLabel,
+    FormControl,
+    Select,
+    MenuItem,
+    Grid,
+    FormHelperText,
+    InputAdornment,
+    Button,
+    makeStyles,
+    Card,
+    CardContent,
+    Container,
+    createStyles
+}
+    from '@material-ui/core';
+import EditProfileForm from "./EditProfileForm";
 
-import { Box, Typography, TextField, InputLabel, FormControl, Select, MenuItem, Grid, FormHelperText, InputAdornment } from '@material-ui/core';
-import { getUsers } from '../../api/users';
+const useStyles = makeStyles((theme) =>
+    createStyles({
+        container: {
+            alignItems: "center",
+        },
+    })
+);
 
-//This is really EditProfileView.tsx
+
 function ProfileView() {
-    const [goal, setGoal] = React.useState('');
-    const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-        setGoal(event.target.value as string);
-    };
-    const [gender, setGender] = React.useState('');
-    const handleChangeG = (event: React.ChangeEvent<{ value: unknown }>) => {
-        setGender(event.target.value as string);
-    };
+    const classes = useStyles();
     return (
-        <Box>
-            <Typography>Edit Profile</Typography>
-
-            <Grid>
-                <form noValidate autoComplete="off">
-                    <Grid item spacing={3}>
-                        <TextField id="standard-basic" label="Email" />
+        <Box display="flex">
+            <Container maxWidth="sm" className={classes.container}>
+                <Grid container direction="column" alignItems="center" spacing={3}>
+                    <Grid item>
+                        <Button href='./ProfileView' color='secondary' fullWidth size="large" variant="contained">
+                            Go Back To Profile
+                        </Button>
                     </Grid>
-                    <Grid item spacing={3}>
-                        <TextField id="standard-number" label="Weight" type="number"
-                            InputProps={{
-                                startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
-                            }}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
+                    <Grid item>
+                        <Typography align="center" variant="h2" color="textSecondary">🏋🏻‍♀️ Edit Profile 🏋🏻‍♂️</Typography>
                     </Grid>
-                    <Grid item spacing={3}>
-                        <TextField id="standard-number" label="Height" type="number"
-                            InputProps={{
-                                startAdornment: <InputAdornment position="start">Inches</InputAdornment>,
-                            }}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
+                    <Grid item>
+                        <Card>
+                            <CardContent>
+                                <Typography align="center" variant="body1" color="textSecondary">You may enter in any new information you want and your profile information will be updated.</Typography>
+                                <EditProfileForm/>
+                            </CardContent>
+                        </Card>
                     </Grid>
-                    <Grid item spacing={3}>
-                        <FormControl>
-                            <InputLabel shrink id="demo-simple-select-placeholder-label-label">Gender</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-placeholder-label-label"
-                                id="demo-simple-select-placeholder-label"
-                                value={gender}
-                                onChange={handleChangeG}
-                                displayEmpty
-                            >
-                                <MenuItem value="" disabled>Gender</MenuItem>
-                                <MenuItem value={"Male"}>Male</MenuItem>
-                                <MenuItem value={"Female"}>Female</MenuItem>
-                                <MenuItem value={"Other"}>Other</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </Grid>
-                    <Grid>
-                        <FormControl>
-                            <InputLabel shrink id="demo-simple-select-placeholder-label-label">Goal</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-placeholder-label-label"
-                                id="demo-simple-select-placeholder-label"
-                                value={goal}
-                                onChange={handleChange}
-                                displayEmpty
-                            >
-                                <MenuItem value="" disabled>Pick a Goal</MenuItem>
-                                <MenuItem value={"To get strong!"}>To get strong!</MenuItem>
-                                <MenuItem value={"To lose weight!"}>To lose weight!</MenuItem>
-                                <MenuItem value={"To tone!"}>To tone!</MenuItem>
-                                <MenuItem value={"To run a marathon!"}>To run a marathon!</MenuItem>
-                                <MenuItem value={"To run a mile"}>To run a mile!</MenuItem>
-                                <MenuItem value={"To lose fat!"}>To lose fat!</MenuItem>
-                                <MenuItem value={"To hit new PRs!"}>To hit new PRs!</MenuItem>
-
-                            </Select>
-                        </FormControl>
-                    </Grid>
-                </form>
-            </Grid>
+                </Grid>
+                <Card>
+                </Card>
+            </Container>
         </Box>
-    );
+    )
 }
 
 export default ProfileView;
