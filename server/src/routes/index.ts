@@ -7,22 +7,14 @@ import { getExercises } from "../controllers/workout/index"
 
 const router: Router = Router()
 
-
 router.get("/users", getUsers)
-
 router.post("/edit-user/:id", updateUser)
 
-router.post('/')
-
 router.post("/auth/signup", signUp)
-
 router.post("/auth/login", login)
-
 router.post("/auth/register", register)
 
-
 router.get('/seed/workout', seedWorkout)
-
 router.post("/exercises", getExercises)
 
 export default router
