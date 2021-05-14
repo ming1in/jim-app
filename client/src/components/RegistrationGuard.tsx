@@ -12,8 +12,8 @@ export default function RegistrationGuard(props: IRegistrationGuardProps): JSX.E
   const authContext = useContext(AuthContext);
 
   useEffect(() => {
-    if (!(authContext?.currentUser)) history.push(ERoute.LOGIN);
-    if (authContext?.currentUser!.registeredAt) history.push(ERoute.WORKOUT);
+    if (!authContext?.currentUser) history.push(ERoute.LOGIN);
+    else if (authContext?.currentUser!.registeredAt) history.push(ERoute.WORKOUT);
   }, [authContext?.currentUser]);
 
   return <>{props.children}</>;
