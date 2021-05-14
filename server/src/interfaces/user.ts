@@ -1,5 +1,4 @@
 import { Document } from "mongoose"
-
 export interface IUser extends Document {
   email: string
   password: string
@@ -10,6 +9,6 @@ export interface IUser extends Document {
   weight: number,
   age: number,
   gender: string,
-  goals: string,
+  goal: string,
   registeredAt: string
 }

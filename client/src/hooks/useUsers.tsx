@@ -1,14 +1,26 @@
-/* eslint-disable react-hooks/rules-of-hooks */
+import { useContext } from "react";
+
 import axios from "axios";
-import { useQuery } from "react-query";
+import { useMutation } from "react-query";
+import { useHistory } from "react-router";
+
+import { AuthContext } from "../context/AuthProvider";
+import { EApi } from "../enums/api";
+import { ERoute } from "../enums/route";
 
 export default function useUsers() {
-  const baseUrl = "http://localhost:5000";
+  const history = useHistory();
+  const auth = useContext(AuthContext);
 
-  const getAll = () =>
-    useQuery("getUsers", () => axios.get(`${baseUrl}/users`)
-    );
+  const update = useMutation(
+    (details: any) =>
+      axios.post(`${EApi.EDIT_USER}/${auth?.currentUser?._id}`, {...auth?.currentUser ,...details}),
+    {
+      onSuccess: ({ data }) => {
+        history.push(ERoute.PROFILE);
+      },
+    }
+  );
 
-  return { getAll };
+  return { update };
 }
-

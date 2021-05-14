@@ -19,14 +19,14 @@ function AuthProvider(props: IAuthProviderProps) {
 
   const [currentUser, setCurrentUser] = useState<IUser | null>(currentUserCached || null);
 
-  const signout = () => setCurrentUser(null)
+  const signout = () => {
+    setCurrentUser(null)
+    localStorage.removeItem("currentUser")
+  }
 
   useEffect(() => {
     if (currentUser) localStorage.setItem("currentUser", JSON.stringify(currentUser));
-    if(!currentUser && currentUserCached) localStorage.removeItem("currentUser")
   }, [currentUser])
-
-  console.log(currentUser)
 
   return (
     <AuthContext.Provider value={{ signout, currentUser, setCurrentUser }}>

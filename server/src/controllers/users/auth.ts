@@ -5,8 +5,8 @@ export const signUp = async (req: Request, res: Response): Promise<void> => {
   try {
     const { email, password } = req.body
     const user = (await User.find({ email }))[0]
-    console.log(req.body)
-    if(user) res.status(404).json('User already exists');
+
+    if (user) res.status(404).json('User already exists');
 
     const baseUser = {
       firstName: null,
@@ -21,7 +21,6 @@ export const signUp = async (req: Request, res: Response): Promise<void> => {
     }
 
     const newUser = new User({ ...baseUser, email, password })
-        console.log(newUser)
 
     await newUser.save()
     res.status(201).json(newUser)
@@ -50,9 +49,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     const currentUser = await User.findById(req.body._id)
 
     await currentUser?.update({...req.body})
-
     const updatedCurrentUser = await User.findById(req.body._id)
-    console.log(req.body)
 
     res.status(201).json(updatedCurrentUser)
   } catch (error) {
