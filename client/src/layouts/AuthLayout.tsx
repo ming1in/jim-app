@@ -2,8 +2,6 @@ import React from "react";
 
 import { createStyles, makeStyles, Theme } from "@material-ui/core";
 
-import Topbar from "./Topbar";
-
 interface IMainLayoutProps {
   children: React.ReactNode;
 }
@@ -22,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
       flex: "1 1 auto",
       overflow: "hidden",
       minHeight: "100vh",
-      paddingTop: 64
+      paddingTop: 64,
     },
     content: {
       flex: "1 1 auto",
@@ -32,12 +30,11 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-function MainLayout(props: IMainLayoutProps): JSX.Element {
+export default function AuthLayout(props: IMainLayoutProps): JSX.Element {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Topbar />
       <div className={classes.wrapper}>
         <div className={classes.content}>{props.children}</div>
       </div>
@@ -45,4 +42,3 @@ function MainLayout(props: IMainLayoutProps): JSX.Element {
   );
 }
 
-export default MainLayout;

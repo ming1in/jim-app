@@ -7,11 +7,14 @@ import LoadingView from "./views/util/LoadingView";
 import AuthGuard from "./components/AuthGuard";
 import GuestGuard from "./components/GuestGuard";
 import RegistrationGuard from "./components/RegistrationGuard";
+import MainLayout from "./layouts/MainLayout";
+import AuthLayout from "./layouts/AuthLayout";
 
 interface RouteConfig {
   exact: boolean;
   path: string;
   guard?: any;
+  layout?: any;
   component: (() => JSX.Element) | LazyExoticComponent<any>;
 }
 
@@ -36,51 +39,60 @@ const routesConfig: RouteConfig[] = [
     exact: true,
     path: ERoute.WORKOUT,
     guard: AuthGuard,
+    layout: MainLayout,
     component: WorkoutView,
   },
   {
     exact: true,
     path: ERoute.SIGNUP,
+    layout: AuthLayout,
     guard: GuestGuard,
     component: SignUpView,
   },
   {
     exact: true,
     path: ERoute.LOGIN,
+    layout: AuthLayout,
     guard: GuestGuard,
     component: LoginView,
   },
   {
     exact: true,
     path: ERoute.REGISTER,
+    layout: AuthLayout,
     guard: RegistrationGuard,
     component: RegistrationView,
   },
   {
     exact: true,
     path: ERoute.PROFILE,
-    component: ProfileView
+    layout: MainLayout,
+    component: ProfileView,
   },
   {
     exact: true,
     path: ERoute.OPTIONS,
-    component: OptionsView
+    layout: MainLayout,
+    component: OptionsView,
   },
   {
     exact: true,
-    path: '/LaunchView',
-    component: LaunchView
+    path: "/LaunchView",
+    layout: MainLayout,
+    component: LaunchView,
   },
   {
     exact: true,
     path: ERoute.BUILD,
+    layout: MainLayout,
     component: BuildView,
   },
   {
-  exact: true,
-  path: ERoute.EDITPROFILE,
-  component: EditProfileView,
-  }
+    exact: true,
+    path: ERoute.EDITPROFILE,
+    layout: MainLayout,
+    component: EditProfileView,
+  },
 ];
 
 const renderRoutes = (routes: RouteConfig[]): JSX.Element => (
