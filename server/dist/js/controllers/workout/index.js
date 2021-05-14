@@ -8,15 +8,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getExercises = void 0;
+const exercises_1 = __importDefault(require("../../models/exercises"));
 const baseUrl = 'http://localhost:5000';
 const getExercises = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const group = req.body.group;
-        const numExercises = req.body.numExercises;
-        // const exercises: AxiosResponse = await axios.get(`${baseUrl}/seed/workout`);
-        res.status(200).json(group);
+        console.log(req.query);
+        const group = req.query.group;
+        console.log(group);
+        const exer = yield exercises_1.default.where({ category: group });
+        res.status(200).json(exer);
     }
     catch (error) {
         throw new Error(error);
