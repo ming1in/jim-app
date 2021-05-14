@@ -15,5 +15,5 @@ router.post("/auth/signup", auth_1.signUp);
 router.post("/auth/login", auth_1.login);
 router.post("/auth/register", auth_1.register);
 router.get('/seed/workout', index_2.seedWorkout);
-router.post("/exercises", index_3.getExercises);
+router.get("/exercises", index_3.getExercises);
 exports.default = router;

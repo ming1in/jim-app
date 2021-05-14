@@ -1,59 +1,144 @@
 import React, { useState } from 'react';
 
-import { Box, Typography, Button, Card, CardContent, Container, makeStyles, createStyles, Grid } from '@material-ui/core';
-import { MenuItem } from 'material-ui';
-import OptionsView from './OptionsView';
-import BuildView from './BuildView';
-import LaunchView from './LaunchView';
+import { Button } from '@material-ui/core'
+import { makeStyles, createStyles } from '@material-ui/core'
+import { useQuery } from 'react-query';
+import axios from 'axios';
 
+import includes from 'lodash/includes'
+
+import { EApi } from '../../enums/api'
+ 
 const useStyles = makeStyles((theme) =>
   createStyles({
     container: {
       display: "flex",
-      alignItems: "center",
+      flexDirection: "column",
+      padding: '1rem'
     },
+    muscleGroupButton: {
+      color: 'white',
+      backgroundColor: theme.palette.secondary.main,
+      margin: '0 1rem',
+      flex: '0 0 auto',
+    },
+    muscleGroupButtonContainer: {
+      display: 'flex',
+      maxWidth: '100%',
+      overflowX: 'auto',
+      padding: '1rem',
+    },
+    header: {
+      display: "flex",
+      flexDirection: "column",
+      padding: '1rem',
+      alignItems: "center",
+      background: theme.palette.primary.main,
+      color: 'white',
+      flexShrink: 0,
+    },
+    excercisesContainer: {
+      flex: 1,
+      maxHeight: '500px',
+      overflowY: 'auto',
+    }
   })
 );
 
-function WorkoutView() {
-  const classes = useStyles();
-  var [step, setStep] = useState("");
+const MUSCLE_GROUPS = ['abdominals', 'abductors', 'biceps', 'calves', 'chest', 'abdominals', 'abductors', 'biceps', 'calves', 'chest', 'abdominals', 'abductors', 'biceps', 'calves', 'chest']
 
-  const getStepContent = () => {
-    switch (step) {
-      case 'options':
-        return <OptionsView setStep={setStep} />;
-      case 'build':
-        return <BuildView setStep={setStep} />;
-      case 'launch':
-        return <LaunchView setStep={setStep} />;
-      default:
-        return null;
+interface Excercise {
+  _id: string
+  name: string
+  category: string
+}
+
+async function fetchExcercises(muscleGroup: string): Promise<Excercise[]> {
+  const data = await axios.get(EApi.GET_EXERCISES, {
+    params: {
+      group: muscleGroup
     }
-  };
+  })
+
+  const excercises = data.data as Excercise[]
+  return excercises
+}
+
+function useFetchExcercies(muscleGroup?: string) {
+  console.log(muscleGroup)
+  return useQuery(['fetchExcercies', muscleGroup], () => fetchExcercises(muscleGroup!), {
+    enabled: muscleGroup !== undefined
+  })
+}
+
+
+
+function WorkoutView() {
+  const [selectedMuscleGroup, setSelectedMuscleGroup] = useState<string | undefined>(undefined)
+  const [selectedExcercises, setSelectedExcercises] = useState<Excercise[]>([])
+  
+  const { data: excercises } = useFetchExcercies(selectedMuscleGroup)
+
+  const classes = useStyles()
+
+  const handleMuscleGroupClick = (muscleGroup: string) => {
+    console.log(muscleGroup)
+    setSelectedMuscleGroup(muscleGroup)
+  }
+
+  const handleAddToWorkout = (excercise: Excercise) => {
+    if (isExcerciseSelected(excercise)) {
+      const newExcercises = selectedExcercises.filter(x => x._id !== excercise._id)
+      setSelectedExcercises(newExcercises)
+    } else {
+      setSelectedExcercises([...selectedExcercises, excercise])
+    }
+  }
+
+  const isExcerciseSelected = (excersice: Excercise) => {
+    const ids = selectedExcercises.map(x => x._id)
+    return includes(ids, excersice._id)
+  }
+
+  console.log(excercises)
 
   return (
-    <Box display="flex" justifyContent="center" flexDirection="column">
-      <Grid container direction="column" spacing={3} alignItems="center">
-        <Grid item>
-          <Box m="2rem"/>
-          <Typography variant="h2" color="textSecondary">Workout Modes</Typography>
-          <Typography variant="h6" color="textSecondary" align = "center">please select a workout mode from below:</Typography>
-        </Grid>
-        <Grid item>
-          <Box p={3}>
-            <Button size="large" variant="contained" onClick={() => setStep('build')} color="secondary">Build A Custom Workout</Button>
-          </Box>
-        </Grid>
-        <Grid item>
-          <Box p={3}>
-            <Button size="large" variant="contained" onClick={() => setStep('options')} color="secondary">Select A Pre-Made Workout</Button>
-          </Box>
-          {getStepContent()}
-        </Grid>
-      </Grid>
-    </Box>
-  );
+      <div className={classes.container}>
+        <div className={classes.header}>
+          <h1>Find Excerices</h1>
+          <div className={classes.muscleGroupButtonContainer}>
+            {
+              MUSCLE_GROUPS.map(muscleGroup => (
+                <Button className={classes.muscleGroupButton} onClick={() => handleMuscleGroupClick(muscleGroup)} key={muscleGroup}>
+                  {muscleGroup}
+                </Button>
+              ))
+            }
+          </div>
+          <div className={classes.muscleGroupButtonContainer}>
+           {
+              selectedExcercises.map(x => (
+                <Button className={classes.muscleGroupButton} onClick={() => handleAddToWorkout(x)} key={x._id}>
+                  {x.name}
+                </Button>
+              ))
+            }
+          </div>
+        </div>
+        <div className={classes.excercisesContainer}>
+          {
+            excercises?.map(exercise => (
+              <div key={exercise._id}>
+                <p>{exercise.name}</p>
+                <button onClick={() => handleAddToWorkout(exercise)}>
+                  {isExcerciseSelected(exercise) ? 'Remove workout' : 'Add to workout'}
+                </button>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+  )
 }
 
 export default WorkoutView;

@@ -6,7 +6,7 @@ export default function useUsers() {
   const baseUrl = "http://localhost:5000";
 
   const getAll = () =>
-    useQuery("getUsers", () => axios.get(`${baseUrl}/users`)
+    useQuery("getUsers", () => axios.get(`${baseUrl}/users`),
     );
 
   return { getAll };
