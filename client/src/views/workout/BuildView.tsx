@@ -18,11 +18,9 @@ import {
   TableCell
 } from '@material-ui/core';
 import {spacing} from '@material-ui/system';
-import { getUsers } from '../../api/users';
 import WorkoutView from './WorkoutView';
 import LaunchView from './LaunchView';
 import { Dispatch, SetStateAction } from 'react';
-import { Box, Typography, Button } from '@material-ui/core';
 
 interface IBuildViewProps {
   setStep: Dispatch<SetStateAction<string>>;

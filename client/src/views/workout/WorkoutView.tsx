@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import { Box, Typography, Button, Card, CardContent, Container, makeStyles, createStyles, Grid } from '@material-ui/core';
-import { getUsers } from '../../api/users';
 import { MenuItem } from 'material-ui';
 import OptionsView from './OptionsView';
 import BuildView from './BuildView';

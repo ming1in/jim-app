@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Box, Typography, Button, Grid, ButtonGroup } from '@material-ui/core';
-import { getUsers } from '../../api/users';
 
 //import { getExercises } from '../../api/exercises'
 import { Dispatch } from 'react';

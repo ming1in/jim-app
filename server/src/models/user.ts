@@ -16,55 +16,46 @@ const userSchema: Schema = new Schema(
     firstName: {
       type: String,
       default: null,
-      required: true,
     },
 
     lastName: {
       type: String,
-            default: null,
-      required: true,
+      default: null,
     },
 
     goal: {
       type: String,
       default: null,
-      required: true,
     },
 
     height: {
       type: Number,
       default: null,
-      required: true,
     },
 
     weight: {
       type: Number,
       default: null,
-      required: true,
     },
 
     city: {
       type: String,
       default: null,
-      required: true,
     },
 
     age: {
       type: Number,
       default: null,
-      required: true,
     },
 
     registeredAt: {
       type: String,
       default: null,
-      required: true,
     },
 
     gender: {
       type: String,
       default: null,
-      required: true,
     }
   },
   { timestamps: true }
