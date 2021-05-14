@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const MUSCLE_GROUPS = ['abdominals', 'abductors', 'biceps', 'calves', 'chest', 'abdominals', 'abductors', 'biceps', 'calves', 'chest', 'abdominals', 'abductors', 'biceps', 'calves', 'chest']
+const MUSCLE_GROUPS = ['abdominals', 'abductors', 'adductors','biceps', 'calves', 'chest', 'forearms', 'glutes', 'hamstrings', 'lats', 'lower back', 'middle back', 'neck', 'quadriceps', 'shoulders', 'stationary', 'traps', 'treadmill', 'triceps']
 
 interface Excercise {
   _id: string
@@ -82,7 +82,6 @@ function WorkoutView() {
   const classes = useStyles()
 
   const handleMuscleGroupClick = (muscleGroup: string) => {
-    console.log(muscleGroup)
     setSelectedMuscleGroup(muscleGroup)
   }
 
@@ -93,14 +92,13 @@ function WorkoutView() {
     } else {
       setSelectedExcercises([...selectedExcercises, excercise])
     }
+    console.log(selectedExcercises)
   }
 
   const isExcerciseSelected = (excersice: Excercise) => {
     const ids = selectedExcercises.map(x => x._id)
     return includes(ids, excersice._id)
   }
-
-  console.log(excercises)
 
   return (
       <div className={classes.container}>
