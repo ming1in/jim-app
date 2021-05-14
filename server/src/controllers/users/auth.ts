@@ -1,20 +1,32 @@
 import { Response, Request } from "express"
 import User from "../../models/user"
-import { IUser } from "../../interfaces/user" 
 
 export const signUp = async (req: Request, res: Response): Promise<void> => {
   try {
     const { email, password } = req.body
-    const user = await User.find({ email })
-    
-    if(user.length !== 0)res.status(404).json('User already exists');
+    const user = (await User.find({ email }))[0]
+    console.log(req.body)
+    if(user) res.status(404).json('User already exists');
 
-    if (user.length === 0) {
-      const newUser = new User({ email, password })
-      await newUser.save()
-      res.status(201).json(newUser)
-    } 
+    const baseUser = {
+      firstName: null,
+      lastName: null,
+      goal: null,
+      height: null,
+      weight: null,
+      city: null,
+      age: null,
+      registeredAt: null,
+      gender: null
+    }
+
+    const newUser = new User({ ...baseUser, email, password })
+        console.log(newUser)
+
+    await newUser.save()
+    res.status(201).json(newUser)
   } catch (error) {
+    console.log(error)
       res.status(404).json({ message: error });
   }
 }
