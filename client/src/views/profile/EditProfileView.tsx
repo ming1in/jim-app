@@ -35,6 +35,18 @@ const useStyles = makeStyles((theme) =>
 
 function ProfileView() {
     const classes = useStyles();
+    /*return (
+        <Box display="flex">
+            <Container maxWidth="sm" className={classes.container}>
+                <Button color="secondary" fullWidth size="large" variant="contained">
+                    Go Back To Profile
+                </Button>
+                <Typography align="center" variant="h2" color="textSecondary">🏋🏻‍♀️ Edit Profile 🏋🏻‍♂️</Typography>
+                <Typography align="center" variant="body1" color="textSecondary">You may enter in any new information you want and your profile information will be updated.</Typography>
+                <EditProfileForm/>
+            </Container>
+        </Box>
+    )*/
     return (
         <Box display="flex">
             <Container maxWidth="sm" className={classes.container}>
