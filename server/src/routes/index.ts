@@ -15,6 +15,6 @@ router.post("/auth/login", login)
 router.post("/auth/register", register)
 
 router.get('/seed/workout', seedWorkout)
-router.post("/exercises", getExercises)
+router.get("/exercises", getExercises)
 
 export default router
