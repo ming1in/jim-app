@@ -18,7 +18,6 @@ const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, password } = req.body;
         const user = (yield user_1.default.find({ email }))[0];
-        console.log(req.body);
         if (user)
             res.status(404).json('User already exists');
         const baseUser = {
@@ -33,7 +32,6 @@ const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             gender: null
         };
         const newUser = new user_1.default(Object.assign(Object.assign({}, baseUser), { email, password }));
-        console.log(newUser);
         yield newUser.save();
         res.status(201).json(newUser);
     }
@@ -63,7 +61,6 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const currentUser = yield user_1.default.findById(req.body._id);
         yield (currentUser === null || currentUser === void 0 ? void 0 : currentUser.update(Object.assign({}, req.body)));
         const updatedCurrentUser = yield user_1.default.findById(req.body._id);
-        console.log(req.body);
         res.status(201).json(updatedCurrentUser);
     }
     catch (error) {

@@ -21,7 +21,6 @@ function SignUpForm() {
   const { signup } = useAuth();
 
   const handleSignUp = async ({ email, password }: ISignUpFormValues) => {
-    console.log({email, password})
     await signup.mutate({ email, password });
   };
 

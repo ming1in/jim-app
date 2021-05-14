@@ -9,6 +9,6 @@ export interface IUser {
   weight: number,
   age: number,
   gender: string,
-  goals: string,
+  goal: string,
   registeredAt: boolean | null;
 }

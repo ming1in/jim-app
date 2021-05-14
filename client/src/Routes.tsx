@@ -66,6 +66,7 @@ const routesConfig: RouteConfig[] = [
   {
     exact: true,
     path: ERoute.PROFILE,
+    guard: AuthGuard,
     layout: MainLayout,
     component: ProfileView,
   },
