@@ -13,7 +13,7 @@ export default function AuthGuard(props: IAuthGuardProps): JSX.Element {
 
   useEffect(() => {
     if (!authContext?.currentUser) history.push(ERoute.LOGIN);
-    if (!authContext?.currentUser!.registeredAt) history.push(ERoute.REGISTER);
+    if (!authContext?.currentUser?.registeredAt) history.push(ERoute.REGISTER);
   }, [authContext?.currentUser]);
 
   return <>{props.children}</>;

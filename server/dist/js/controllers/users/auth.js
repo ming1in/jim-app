@@ -17,16 +17,28 @@ const user_1 = __importDefault(require("../../models/user"));
 const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, password } = req.body;
-        const user = yield user_1.default.find({ email });
-        if (user.length !== 0)
+        const user = (yield user_1.default.find({ email }))[0];
+        console.log(req.body);
+        if (user)
             res.status(404).json('User already exists');
-        if (user.length === 0) {
-            const newUser = new user_1.default({ email, password });
-            yield newUser.save();
-            res.status(201).json(newUser);
-        }
+        const baseUser = {
+            firstName: null,
+            lastName: null,
+            goal: null,
+            height: null,
+            weight: null,
+            city: null,
+            age: null,
+            registeredAt: null,
+            gender: null
+        };
+        const newUser = new user_1.default(Object.assign(Object.assign({}, baseUser), { email, password }));
+        console.log(newUser);
+        yield newUser.save();
+        res.status(201).json(newUser);
     }
     catch (error) {
+        console.log(error);
         res.status(404).json({ message: error });
     }
 });

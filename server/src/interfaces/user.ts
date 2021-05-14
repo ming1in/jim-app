@@ -10,5 +10,6 @@ export interface IUser extends Document {
   weight: number,
   age: number,
   gender: string,
-  goals: string
+  goals: string,
+  registeredAt: string
 }
