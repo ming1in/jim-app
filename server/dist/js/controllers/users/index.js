@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUser = exports.updateUser = exports.addUser = exports.getUsers = void 0;
+exports.updateUser = exports.getUsers = void 0;
 const user_1 = __importDefault(require("../../models/user"));
 const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -24,58 +24,14 @@ const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getUsers = getUsers;
-const addUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const body = req.body;
-        const user = new user_1.default({
-            firstName: body.firstName,
-            lastName: body.lastName,
-            city: body.city,
-            weight: body.weight,
-            height: body.height,
-            age: body.age,
-            gender: body.gender,
-            goals: body.goals
-        });
-        const newUser = yield user.save();
-        const allUsers = yield user_1.default.find();
-        res
-            .status(201)
-            .json({ message: "User added", user: newUser, users: allUsers });
-    }
-    catch (error) {
-        throw error;
-    }
-});
-exports.addUser = addUser;
 const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { params: { id }, body, } = req;
         const updateUser = yield user_1.default.findByIdAndUpdate({ _id: id }, body);
-        const allUsers = yield user_1.default.find();
-        res.status(200).json({
-            message: "User updated",
-            user: updateUser,
-            users: allUsers,
-        });
+        res.status(200).json(updateUser);
     }
     catch (error) {
         throw error;
     }
 });
 exports.updateUser = updateUser;
-const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const deletedUser = yield user_1.default.findByIdAndRemove(req.params.id);
-        const allUsers = yield user_1.default.find();
-        res.status(200).json({
-            message: "User deleted",
-            user: deletedUser,
-            users: allUsers,
-        });
-    }
-    catch (error) {
-        throw error;
-    }
-});
-exports.deleteUser = deleteUser;

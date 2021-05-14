@@ -7,9 +7,11 @@ import {
   AppBar,
   Toolbar,
   Button,
+  Box
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
+import { ERoute } from "../enums/route";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -29,6 +31,9 @@ const useStyles = makeStyles((theme) =>
     logo: {
       maxHeight: 64,
     },
+    navItem: {
+      marginLeft: theme.spacing(2)
+    }
   })
 );
 
@@ -40,10 +45,15 @@ function Topbar() {
     <AppBar className={classes.root}>
       <Toolbar className={classes.toolbar}>
         <img src="/static/logo.png" alt="Logo" className={classes.logo} />
-        <Link to="/">
-          <Typography>Workout</Typography>
-        </Link>
-        <Button onClick={auth?.signout}>Log out</Button>
+        <Box display="flex" alignItems="center">
+          <Link to={ERoute.WORKOUT} className={classes.navItem}>
+            <Typography>Workout</Typography>
+          </Link>
+          <Link to={ERoute.PROFILE} className={classes.navItem}>
+            <Typography>Profile</Typography>
+          </Link>
+          <Button onClick={auth?.signout}>Log out</Button>
+        </Box>
       </Toolbar>
     </AppBar>
   );
