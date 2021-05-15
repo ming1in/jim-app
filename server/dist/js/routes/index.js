@@ -13,4 +13,6 @@ router.post("/auth/login", auth_1.login);
 router.post("/auth/register", auth_1.register);
 router.get('/seed/workout', index_2.seedWorkout);
 router.get("/exercises", index_3.getExercises);
+router.post('/workouts/add', index_3.addWorkout);
+router.get('/workouts/:workoutId', index_3.getWorkout);
 exports.default = router;

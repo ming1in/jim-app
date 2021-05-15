@@ -14,12 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.seedWorkout = void 0;
 const exercises_json_1 = __importDefault(require("./exercises.json"));
-const exercises_1 = __importDefault(require("../../models/exercises"));
+const exercise_1 = __importDefault(require("../../models/exercise"));
 const seedWorkout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const exercises = exercises_json_1.default;
     exercises.forEach(function (value) {
         return __awaiter(this, void 0, void 0, function* () {
-            const temp = new exercises_1.default(value);
+            const temp = new exercise_1.default(value);
             yield temp.save();
         });
     });

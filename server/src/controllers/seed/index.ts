@@ -1,6 +1,6 @@
 import { Response, Request } from "express"
 import _exercises from './exercises.json'
-import Exercise from "../../models/exercises"
+import Exercise from "../../models/exercise"
 import { IExercise } from "../../interfaces/exercises" 
 
 export const seedWorkout = async (req: Request, res: Response): Promise<void> => {
