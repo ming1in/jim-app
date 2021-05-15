@@ -1,23 +1,21 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, useContext, useState } from "react";
 
 import {
   Drawer,
   Box,
   makeStyles,
   createStyles,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemSecondaryAction,
-  IconButton,
   Typography,
   Divider,
   Button,
   CircularProgress,
 } from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
 
 import useWorkouts from "../../../hooks/useWorkouts";
+import Timer from "./Timer";
+import CircleProgress from "./CircleProgress";
+import { WorkoutContext } from "../../../context/WorkoutProvider";
+import RestTimer from "./RestTimer";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -26,14 +24,16 @@ const useStyles = makeStyles((theme) =>
       top: "64px",
       height: "calc(100% - 64px)",
     },
+
+    circleProgress: {},
   })
 );
 
-interface ISidebarProps {}
-
-export default function Sidebar(props: ISidebarProps) {
+export default function Sidebar(props: any) {
   const classes = useStyles();
-  const workouts = useWorkouts();
+  const context = useContext(WorkoutContext);
+
+  const [isStarted, setIsStarted] = useState(true);
 
   return (
     <Drawer
@@ -50,12 +50,45 @@ export default function Sidebar(props: ISidebarProps) {
         p={2}
         mb={5}
       >
-        <Box flexGrow={1}>
-          <Typography variant="h6">Selected Exercises</Typography>
+        <Box flexGrow={1} display="flex" flexDirection="column">
+          <Timer isStarted={isStarted} variant="stopwatch" label="Duration" />
+          <Box textAlign="center" mb={3} mt={1}>
+            {isStarted ? (
+              <Button
+                color="secondary"
+                variant="contained"
+                onClick={() => setIsStarted(false)}
+              >
+                Stop
+              </Button>
+            ) : (
+              <Button
+                color="primary"
+                variant="contained"
+                onClick={() => setIsStarted(true)}
+              >
+                Start
+              </Button>
+            )}
+          </Box>
           <Divider variant="fullWidth" />
+          <Box display="flex" flexDirection="column" flexGrow={1} paddingX={2}>
+            <Box flexGrow={1} display="flex" alignItems="center">
+              <CircleProgress value={context!.progress}>
+                <Typography variant="h5" component="div" color="textSecondary">
+                  {`${context?.progress}%`}
+                </Typography>
+              </CircleProgress>
+            </Box>
+
+            <RestTimer
+              isStarted={context!.isResting}
+              onComplete={context?.stopResting}
+            />
+          </Box>
         </Box>
         <Button variant="contained" color="primary">
-          {workouts.add.isLoading ? <CircularProgress /> : "Start Workout"}
+          {false ? <CircularProgress /> : "Finish Workout"}
         </Button>
       </Box>
     </Drawer>

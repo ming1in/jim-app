@@ -1,25 +1,22 @@
 import React, { useState, Dispatch, SetStateAction } from "react";
+import { IExercise } from "../../../../interfaces/workout";
 
 import BrowseCategory from "./BrowseCategory";
 import BrowseExercises from "./BrowseExercises";
 
 interface IBrowseProps {
-  selectedExercises: any[];
-  setSelectedExercises: Dispatch<SetStateAction<any[]>>;
+  selectedExercises: { [id: string]: IExercise };
+  setSelectedExercises: Dispatch<SetStateAction<{ [id: string]: IExercise }>>;
 }
 
 export default function Browse(props: IBrowseProps) {
-  const [selectedCategory, setSelectedCategory] = useState<any>(undefined);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  const onClickExercise = (exercise: any) => {
-    if (props.selectedExercises.includes(exercise)) {
-      const newExcercises = props.selectedExercises.filter(
-        (x) => x._id !== exercise._id
-      );
-      props.setSelectedExercises(newExcercises);
-    } else {
-      props.setSelectedExercises([...props.selectedExercises, exercise]);
-    }
+  const onClickExercise = (exercise: IExercise) => {
+    props.setSelectedExercises({
+      ...props.selectedExercises,
+      [exercise._id]: { ...exercise, set: 4, rep: 12 },
+    });
   };
 
   return (
@@ -27,7 +24,7 @@ export default function Browse(props: IBrowseProps) {
       {selectedCategory ? (
         <BrowseExercises
           onClickExercise={onClickExercise}
-          handleBack={() => setSelectedCategory(undefined)}
+          handleBack={() => setSelectedCategory(null)}
           category={selectedCategory}
           selectedExercises={props.selectedExercises}
         />

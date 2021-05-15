@@ -4,6 +4,7 @@ import { makeStyles, createStyles } from "@material-ui/core";
 
 import Sidebar from "./Sidebar";
 import Browse from "./Browse";
+import { IExercise } from "../../../interfaces/workout";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -17,7 +18,7 @@ const useStyles = makeStyles((theme) =>
       display: "flex",
       flex: "1 1 auto",
       overflow: "hidden",
-      paddingRight: "300px",
+      paddingRight: "350px",
     },
     content: {
       flex: "1 1 auto",
@@ -31,7 +32,7 @@ const useStyles = makeStyles((theme) =>
 export default function BuildWorkoutView(props: any) {
   const classes = useStyles();
 
-  const [selectedExercises, setSelectedExercises] = useState<any[]>([]);
+  const [selectedExercises, setSelectedExercises] = useState < { [id:string]: IExercise }>({});
 
   return (
     <div className={classes.root}>

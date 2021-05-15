@@ -14,6 +14,7 @@ import {
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 import userExercises from "../../../../hooks/useExercises";
+import { IExercise } from "../../../../interfaces/workout";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) =>
 
 interface IBrowseExercisesProps {
   category?: string;
-  selectedExercises: any[];
+  selectedExercises: { [id: string]: IExercise };
   handleBack: () => void;
   onClickExercise: (exercise: any) => void;
 }
@@ -50,8 +51,8 @@ export default function BrowseExercises(props: IBrowseExercisesProps) {
       <Grid container spacing={1}>
         {excercises?.map((exercise) => (
           <>
-            {!props.selectedExercises.includes(exercise) && (
-              <Grid item xs={3}>
+            {!props.selectedExercises[exercise._id] && (
+              <Grid item xs={3} key={exercise._id}>
                 <Card
                   className={classes.card}
                   component={ButtonBase}

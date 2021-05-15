@@ -6,23 +6,21 @@ import {
   makeStyles,
   createStyles,
   List,
-  ListItem,
-  ListItemText,
-  ListItemSecondaryAction,
-  IconButton,
   Typography,
   Divider,
   Button,
-  CircularProgress
+  CircularProgress,
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 
-import useWorkouts from "../../../hooks/useWorkouts";
+import useWorkouts from "../../../../hooks/useWorkouts";
+import ExerciseListItem from "./ExerciseListItem";
+import { IExercise } from "../../../../interfaces/workout";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     desktopDrawer: {
-      width: "300px",
+      width: "350px",
       top: "64px",
       height: "calc(100% - 64px)",
     },
@@ -30,23 +28,16 @@ const useStyles = makeStyles((theme) =>
 );
 
 interface ISidebarProps {
-  selectedExercises: any[];
-  setSelectedExercises: Dispatch<SetStateAction<any[]>>;
+  selectedExercises: { [id: string]: IExercise };
+  setSelectedExercises: Dispatch<SetStateAction<{ [id: string]: IExercise }>>;
 }
 
 export default function Sidebar(props: ISidebarProps) {
   const classes = useStyles();
   const workouts = useWorkouts();
 
-  const removeSelectedExercise = (exercise: any) => {
-    const newExcercises = props.selectedExercises.filter(
-      (x) => x._id !== exercise._id
-    );
-    props.setSelectedExercises(newExcercises);
-  };
-
   const handleStartWorkout = () => {
-    workouts.add.mutate(props.selectedExercises)
+    workouts.add.mutate(props.selectedExercises);
   };
 
   return (
@@ -61,22 +52,20 @@ export default function Sidebar(props: ISidebarProps) {
         display="flex"
         flexDirection="column"
         bgcolor="white"
-        p={2}
+        paddingX={1}
+        paddingY={2}
         mb={5}
       >
         <Box flexGrow={1}>
           <Typography variant="h6">Selected Exercises</Typography>
           <Divider variant="fullWidth" />
           <List>
-            {props.selectedExercises.map((exercise) => (
-              <ListItem>
-                <ListItemText primary={exercise.name} />
-                <ListItemSecondaryAction>
-                  <IconButton onClick={() => removeSelectedExercise(exercise)}>
-                    <CloseIcon />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
+            {Object.values(props.selectedExercises).map((exercise) => (
+              <ExerciseListItem
+                exercise={exercise}
+                selectedExercises={props.selectedExercises}
+                setSelectedExercises={props.setSelectedExercises}
+              />
             ))}
           </List>
         </Box>
