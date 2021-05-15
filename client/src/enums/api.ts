@@ -4,4 +4,6 @@ export enum EApi {
   SIGNUP = 'http://localhost:5000/auth/signup',
   GET_EXERCISES = 'http://localhost:5000/exercises',
   EDIT_USER = 'http://localhost:5000/edit-user',
+  ADD_WORKOUT = 'http://localhost:5000/workouts/add',
+  GET_WORKOUT = 'http://localhost:5000/workouts/'
 }
