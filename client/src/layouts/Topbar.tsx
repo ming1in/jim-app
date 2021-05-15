@@ -72,7 +72,7 @@ export default function Topbar() {
         <Button
           className={classes.navItem}
           component={Link}
-          to={ERoute.WORKOUT}
+          to={ERoute.HOME}
           color="secondary"
         >
           Workout

@@ -1,17 +1,14 @@
-//import axios, { AxiosResponse } from 'axios'
-import { Response, Request, json } from "express"
-import { IExercise } from '../../interfaces/exercises'
-import Excercise from '../../models/exercises'
+import { Response, Request } from "express"
 
-const baseUrl = 'http://localhost:5000';
+import Excercise from '../../models/exercise'
+import Workout from "../../models/workout";
+import { IUser } from '../../interfaces/user'
+import { IExercise } from '../../interfaces/exercises'
+
 
 export const getExercises = async (req: Request, res: Response): Promise<void> => {
   try {
-
-    console.log(req.query)
-
     const group = req.query.group as string
-    console.log(group)
 
     const exer = await Excercise.where({ category: group })
 
@@ -20,3 +17,36 @@ export const getExercises = async (req: Request, res: Response): Promise<void> =
     throw new Error(error);
   }
 };
+
+
+export const addWorkout = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const exercises = req.body.exercises as IExercise[]
+    const currentUser = req.body.currentUser as IUser
+
+    const baseWorkout = {
+      isFavorited: false,
+      completedAt: null
+    }
+    
+    const newWorkout = new Workout({...baseWorkout, exercises, userId: currentUser._id})
+    await newWorkout.save()
+    console.log(newWorkout)
+
+    res.status(201).json(newWorkout)
+} catch (error) {
+      throw new Error(error);
+}
+}
+
+export const getWorkout = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { workoutId } = req.params
+
+    const workout = await Workout.where({ _id: workoutId })
+    
+    res.status(200).json(workout);
+  } catch (error) {
+    throw new Error(error);
+  }
+}
