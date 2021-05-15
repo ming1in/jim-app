@@ -54,7 +54,7 @@ export default function BrowseCategory(props: IBrowseCategoryProps) {
   const classes = useStyles();
   const history = useHistory();
 
-  const handleBack = () => history.push(ERoute.WORKOUT);
+  const handleBack = () => history.push(ERoute.HOME);
 
   return (
     <>
