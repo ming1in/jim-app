@@ -1,7 +1,6 @@
 import { Response, Request } from "express"
 import User from "../../models/user"
-
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcrypt')
 
 export const signUp = async (req: Request, res: Response): Promise<void> => {
   try {

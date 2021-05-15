@@ -25,8 +25,8 @@ import { AuthContext } from "../../../context/AuthProvider";
 import { ERoute } from "../../../enums/route";
 import useUsers from "../../../hooks/useUsers";
 
-const genderMenuItems = ["Male", "Female"];
-const goalMenuItems = ["Weight loss", "Core/Abs", "Bicep"];
+const genderMenuItems = ["Male", "Female", "Other"];
+const goalMenuItems = ["Weight loss", "Strength Training", "Mental wellbeing", "Powerlifting", "Bodybuilding", "Tone and sculpt", "Running", "Get into working out", "Overall fitness"];
 
 const useStyles = makeStyles((theme) =>
   createStyles({
