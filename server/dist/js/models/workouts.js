@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const workoutSchema = new mongoose_1.Schema({
-    exercises: {
+    exercise: {
         type: Array,
         required: true
     },
@@ -18,4 +18,4 @@ const workoutSchema = new mongoose_1.Schema({
         type: String
     }
 }, { timestamps: true });
-exports.default = mongoose_1.model("workout", workoutSchema);
+exports.default = mongoose_1.model("workouts", workoutSchema);

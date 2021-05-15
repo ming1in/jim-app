@@ -71,7 +71,7 @@ export default function UserProfileDetail(props: any) {
         <Typography variant="h4">
           {`${auth?.currentUser?.firstName} ${auth?.currentUser?.lastName}`}
         </Typography>
-        <IconButton component={Link} to={ERoute.EDITPROFILE}>
+        <IconButton component={Link} to={ERoute.EDIT_PROFILE}>
           <BorderColorIcon />
         </IconButton>
       </Box>

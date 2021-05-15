@@ -1,10 +1,11 @@
 export enum ERoute {
-  WORKOUT = '/workout',
+  HOME = '/home',
   SIGNUP = '/signup',
   LOGIN = '/login',
   REGISTER = '/register',
   PROFILE = '/profile',
-  EDITPROFILE = '/editprofile',
+  EDIT_PROFILE = '/editprofile',
   OPTIONS = '/options',
   BUILD = '/buildworkout',
+  WORKOUT = '/workout'
 }

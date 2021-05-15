@@ -18,29 +18,22 @@ interface RouteConfig {
   component: (() => JSX.Element) | LazyExoticComponent<any>;
 }
 
-const WorkoutView = lazy(() => import("./views/workout/WorkoutView"));
 const SignUpView = lazy(() => import("./views/auth/SignUpView"));
 const LoginView = lazy(() => import("./views/auth/LoginView"));
 const RegistrationView = lazy(() => import("./views/auth/RegistrationView"));
-const ProfileView = lazy(() => import('./views/profile/ProfileView'));
-const OptionsView = lazy(() => import('./views/workout/OptionsView'));
-const LaunchView = lazy(() => import('./views/workout/LaunchView'));
-const BuildView = lazy(() => import('./views/workout/BuildView'));
-const EditProfileView = lazy(() => import('./views/profile/EditProfileView'));
 
+const ProfileView = lazy(() => import("./views/profile/ProfileView"));
+const EditProfileView = lazy(() => import("./views/profile/EditProfileView"));
+
+const HomeWorkoutView = lazy(() => import("./views/workout/HomeWorkoutView"));
+const BuildWorkoutView = lazy(() => import("./views/workout/BuildWorkoutView"));
+const WorkoutView = lazy(() => import("./views/workout/WorkoutView"));
 
 const routesConfig: RouteConfig[] = [
   {
     exact: true,
     path: "/",
-    component: () => <Redirect to={ERoute.WORKOUT} />,
-  },
-  {
-    exact: true,
-    path: ERoute.WORKOUT,
-    guard: AuthGuard,
-    layout: MainLayout,
-    component: WorkoutView,
+    component: () => <Redirect to={ERoute.HOME} />,
   },
   {
     exact: true,
@@ -72,27 +65,28 @@ const routesConfig: RouteConfig[] = [
   },
   {
     exact: true,
-    path: ERoute.OPTIONS,
+    path: ERoute.EDIT_PROFILE,
     layout: MainLayout,
-    component: OptionsView,
+    component: EditProfileView,
   },
   {
     exact: true,
-    path: "/LaunchView",
+    path: ERoute.HOME,
+    guard: AuthGuard,
     layout: MainLayout,
-    component: LaunchView,
+    component: HomeWorkoutView,
   },
   {
     exact: true,
     path: ERoute.BUILD,
     layout: MainLayout,
-    component: BuildView,
+    component: BuildWorkoutView,
   },
   {
     exact: true,
-    path: ERoute.EDITPROFILE,
+    path: `${ERoute.WORKOUT}/:workoutId`,
     layout: MainLayout,
-    component: EditProfileView,
+    component: WorkoutView,
   },
 ];
 
@@ -123,8 +117,6 @@ const renderRoutes = (routes: RouteConfig[]): JSX.Element => (
   </Suspense>
 );
 
-function Routes() {
+export default function Routes() {
   return renderRoutes(routesConfig);
 }
-
-export default Routes;
