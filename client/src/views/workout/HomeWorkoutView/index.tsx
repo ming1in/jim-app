@@ -36,17 +36,17 @@ export default function WorkoutView() {
 
   return (
     <Container maxWidth="md" className={classes.container}>
-      <Typography variant="h2">Start your workout</Typography>
+      <Typography variant="h2">Start your Workout</Typography>
       <Box display="flex" width="100%">
         <Paper className={classes.paper}>
-          <Typography>Generate</Typography>
+          <Typography>Generate a random Workout</Typography>
         </Paper>
         <Paper
           className={classes.paper}
           onClick={() => history.push(ERoute.BUILD)}
           component={ButtonBase}
         >
-          <Typography>Build your own </Typography>
+          <Typography>Build your own custom Workout</Typography>
         </Paper>
       </Box>
     </Container>
