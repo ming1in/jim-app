@@ -12,7 +12,7 @@ export default function GuestGuard(props: IGuestGuardProps): JSX.Element {
   const authContext = useContext(AuthContext);
 
   useEffect(() => {
-    if (authContext?.currentUser) history.push(ERoute.WORKOUT);
+    if (authContext?.currentUser) history.push(ERoute.HOME);
   }, [authContext?.currentUser]);
 
   return <>{props.children}</>;

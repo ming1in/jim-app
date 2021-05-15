@@ -13,7 +13,7 @@ export default function RegistrationGuard(props: IRegistrationGuardProps): JSX.E
 
   useEffect(() => {
     if (!authContext?.currentUser) history.push(ERoute.LOGIN);
-    else if (authContext?.currentUser!.registeredAt) history.push(ERoute.WORKOUT);
+    else if (authContext?.currentUser!.registeredAt) history.push(ERoute.HOME);
   }, [authContext?.currentUser]);
 
   return <>{props.children}</>;
