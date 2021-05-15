@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.register = exports.login = exports.signUp = void 0;
 const user_1 = __importDefault(require("../../models/user"));
+const bcrypt = require('bcryptjs');
 const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, password } = req.body;
@@ -31,7 +32,7 @@ const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             registeredAt: null,
             gender: null
         };
-        const newUser = new user_1.default(Object.assign(Object.assign({}, baseUser), { email, password }));
+        const newUser = new user_1.default(Object.assign(Object.assign({}, baseUser), { email, password: bcrypt.hashSync(password, bcrypt.genSaltSync()) }));
         yield newUser.save();
         res.status(201).json(newUser);
     }
@@ -47,7 +48,8 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const user = (yield user_1.default.find({ email }))[0];
         if (!user)
             res.status(404).json({ error: 'User does not exist' });
-        if (user.password !== password)
+        const match = yield bcrypt.compareSync(password, user.password);
+        if (!match)
             res.status(404).json({ error: 'Incorrect password' });
         res.status(201).json(user);
     }
