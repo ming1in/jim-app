@@ -1,5 +1,9 @@
 # Jim: Your Personal Gym Trainer
+
 ## Github link: [https://github.com/ming1in/jim-app](https://github.com/ming1in/jim-app)
+
+## What is Jim?
+Insert Jim: Your Personal Gym Trainer. Jim is here to assist you in your time of need. On our website, you would be able to find exercises for the muscles groups you are working on, whether it is a push, pull, or leg day. Jim will easily give you a range of random exercises to help you reach your fitness goals. Jim is a site that will not make you scroll endlessly through different social media platforms to find a decent workout that you want to do. Jim will create workouts for you completely if your brain is completely fried that day and you can get the satisfaction knowing you got a complete workout. Log in with Jim and save workouts that you like, or log in with Jim and find exercises for different muscle groups.
 
 ## [Front End](/client)
 The way that this works is that in front-end, you'll need to cd into client, and then do the following commands:
@@ -13,8 +17,6 @@ For backend, navigate to server, and then do the following commands in a separat
 ### yarn start
 The first will install all necessary dependencies to run our backend on local host and the second will start the backend. 
 
-## What is Jim?
-Insert Jim: Your Personal Gym Trainer. Jim is here to assist you in your time of need. On our website, you would be able to find exercises for the muscles groups you are working on, whether it is a push, pull, or leg day. Jim will easily give you a range of random exercises to help you reach your fitness goals. Jim is a site that will not make you scroll endlessly through different social media platforms to find a decent workout that you want to do. Jim will create workouts for you completely if your brain is completely fried that day and you can get the satisfaction knowing you got a complete workout. Log in with Jim and save workouts that you like, or log in with Jim and find exercises for different muscle groups.
 ## Some of Jim's Dependencies
 ### Material UI
 Material UI creates react components for faster and easier web development. We use this to help design our system and so that we have beautiful designs that help enhance our website and make it more user-friendly.
