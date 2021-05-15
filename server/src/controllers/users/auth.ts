@@ -1,6 +1,8 @@
 import { Response, Request } from "express"
 import User from "../../models/user"
 
+const bcrypt = require('bcryptjs')
+
 export const signUp = async (req: Request, res: Response): Promise<void> => {
   try {
     const { email, password } = req.body
@@ -20,7 +22,7 @@ export const signUp = async (req: Request, res: Response): Promise<void> => {
       gender: null
     }
 
-    const newUser = new User({ ...baseUser, email, password })
+    const newUser = new User({ ...baseUser, email, password: bcrypt.hashSync(password, bcrypt.genSaltSync()) })
 
     await newUser.save()
     res.status(201).json(newUser)
@@ -36,7 +38,9 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     const user = (await User.find({ email }))[0]
 
     if (!user) res.status(404).json({error: 'User does not exist'})
-    if(user.password !== password) res.status(404).json({error: 'Incorrect password'})
+
+    const match = await bcrypt.compareSync(password, user.password);
+    if(!match) res.status(404).json({error: 'Incorrect password'})
 
     res.status(201).json(user)
   } catch (error) {
