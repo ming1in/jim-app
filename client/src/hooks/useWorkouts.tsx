@@ -78,5 +78,14 @@ export default function useWorkouts() {
     }
   );
 
-  return { add, complete, generate, fetchWorkout, fetchAll };
+ const remove = useMutation(
+   (workoutId: string) => axios.delete(EApi.DEL_WORKOUT + workoutId),
+   {
+     onSuccess: () => {
+       window.location.reload()
+     },
+   }
+ );
+
+  return { add, complete, generate, remove, fetchWorkout, fetchAll };
 }

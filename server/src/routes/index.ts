@@ -9,7 +9,8 @@ import {
   getExercises,
   getWorkout,
   completeWorkout,
-  getAllWorkout
+  getAllWorkout,
+  removeWorkout
 } from "../controllers/workout/index"
 
 const router: Router = Router()
@@ -29,5 +30,7 @@ router.post('/workouts/add', addWorkout)
 router.get('/workouts/:workoutId', getWorkout)
 router.post('/workouts/complete/:workoutId', completeWorkout)
 router.post('/workouts/gen', generateWorkout)
+router.delete('/workouts/del/:workoutId', removeWorkout)
+
 
 export default router

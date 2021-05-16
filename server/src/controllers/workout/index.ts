@@ -73,14 +73,13 @@ export const completeWorkout = async (req: Request, res: Response): Promise<void
 
 export const getAllWorkout = async (req: Request, res: Response): Promise<void> => {
 try {
-    const { userId } = req.params
+  const { userId } = req.params
 
   const userWorkout = (await Workout.find({userId}))
   userWorkout.sort((a,b) => moment(b.createdAt).toDate().getTime() - moment(a.createdAt).toDate().getTime()  )
   res.status(200).json(userWorkout);
 } catch (error) {
-    res.status(500).json(error);
-
+  res.status(500).json(error);
 }
 }
 
@@ -116,7 +115,19 @@ export const generateWorkout = async (req: Request, res: Response): Promise<void
     await newWorkout.save()
     res.status(200).json(newWorkout)
   } catch (error) {
-        res.status(500).json(error);
+    res.status(500).json(error);
+  }
+}
 
+export const removeWorkout = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { workoutId } = req.params
+
+    console.log(workoutId)
+    await Workout.findByIdAndRemove(workoutId)
+
+    res.status(200)
+  } catch (error) {
+    res.status(500).json(error);
   }
 }

@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateWorkout = exports.getAllWorkout = exports.completeWorkout = exports.getWorkout = exports.addWorkout = exports.getExercises = void 0;
+exports.removeWorkout = exports.generateWorkout = exports.getAllWorkout = exports.completeWorkout = exports.getWorkout = exports.addWorkout = exports.getExercises = void 0;
 const moment_1 = __importDefault(require("moment"));
 const exercise_1 = __importDefault(require("../../models/exercise"));
 const workout_1 = __importDefault(require("../../models/workout"));
@@ -107,3 +107,15 @@ const generateWorkout = (req, res) => __awaiter(void 0, void 0, void 0, function
     }
 });
 exports.generateWorkout = generateWorkout;
+const removeWorkout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { workoutId } = req.params;
+        console.log(workoutId);
+        yield workout_1.default.findByIdAndRemove(workoutId);
+        res.status(200);
+    }
+    catch (error) {
+        res.status(500).json(error);
+    }
+});
+exports.removeWorkout = removeWorkout;

@@ -37,7 +37,6 @@ const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(201).json(newUser);
     }
     catch (error) {
-        console.log(error);
         res.status(500).json(error);
     }
 });
