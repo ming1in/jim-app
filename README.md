@@ -34,7 +34,7 @@ You will also see any lint errors in the console.
 ## [Back End](/server)
 For backend, navigate to server, and then do the following commands in a separate terminal from front end:`
 ### `cd server`
-### `yarn install
+### `yarn install`
 The way that this works is that in the back-end, you'll need to cd into server, and then do the following commands:
 ### `yarn start`
 
