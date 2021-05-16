@@ -41,4 +41,3 @@ export default function AuthLayout(props: IMainLayoutProps): JSX.Element {
     </div>
   );
 }
-

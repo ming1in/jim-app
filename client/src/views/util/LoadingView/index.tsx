@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 function LoadingView(): JSX.Element {
   return <text> Loading... </text>;

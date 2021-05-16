@@ -1,10 +1,12 @@
 import React from "react";
 
 import { useParams } from "react-router";
-import { Typography, makeStyles, createStyles } from "@material-ui/core";
+import { makeStyles, createStyles } from "@material-ui/core";
 
 import useWorkouts from "../../../hooks/useWorkouts";
 import Sidebar from "./Sidebar";
+import WorkoutList from "./WorkoutList";
+import WorkoutProvider from "../../../context/WorkoutProvider";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -30,21 +32,24 @@ const useStyles = makeStyles((theme) =>
 );
 
 export default function WorkoutView() {
-    const classes = useStyles();
-  const { workoutId } = useParams() as any;
+  const classes = useStyles();
   const workouts = useWorkouts();
+  const { workoutId } = useParams() as any;
 
-  const {data: workout} = workouts.fetchWorkout(workoutId);
+  const { data: workout } = workouts.fetchWorkout(workoutId);
 
-  console.log(workout);
+  if (!workout) return null;
 
   return (
-    <div className={classes.root}>
-      <div className={classes.wrapper}>
-        <div className={classes.content}>
-          <Typography>{workoutId}</Typography>
+    <WorkoutProvider>
+      <div className={classes.root}>
+        <div className={classes.wrapper}>
+          <div className={classes.content}>
+            <WorkoutList workout={workout[0]} />
+          </div>
         </div>
+        <Sidebar />
       </div>
-      <Sidebar/>
-    </div>
-  );}
+    </WorkoutProvider>
+  );
+}

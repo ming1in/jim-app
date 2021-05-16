@@ -14,7 +14,10 @@ export default function useUsers() {
 
   const update = useMutation(
     (details: any) =>
-      axios.post(`${EApi.EDIT_USER}/${auth?.currentUser?._id}`, {...auth?.currentUser ,...details}),
+      axios.post(`${EApi.EDIT_USER}/${auth?.currentUser?._id}`, {
+        ...auth?.currentUser,
+        ...details,
+      }),
     {
       onSuccess: ({ data }) => {
         history.push(ERoute.PROFILE);

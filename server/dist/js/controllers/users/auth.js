@@ -38,7 +38,7 @@ const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
     catch (error) {
         console.log(error);
-        res.status(404).json({ message: error });
+        res.status(500).json(error);
     }
 });
 exports.signUp = signUp;
@@ -54,7 +54,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(201).json(user);
     }
     catch (error) {
-        throw error;
+        res.status(500).json(error);
     }
 });
 exports.login = login;
@@ -66,7 +66,7 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(201).json(updatedCurrentUser);
     }
     catch (error) {
-        throw error;
+        res.status(500).json(error);
     }
 });
 exports.register = register;

@@ -6,5 +6,6 @@ export interface IWorkout extends Document{
   exercise: IExercise[],
   isFavorited: boolean,
   userId: string,
-  completedAt: string
+  completedAt: string,
+  createdAt: string
 }

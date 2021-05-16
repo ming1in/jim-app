@@ -1,4 +1,5 @@
 import { Response, Request } from "express"
+
 import User from "../../models/user"
 const bcrypt = require('bcrypt')
 
@@ -27,7 +28,7 @@ export const signUp = async (req: Request, res: Response): Promise<void> => {
     res.status(201).json(newUser)
   } catch (error) {
     console.log(error)
-      res.status(404).json({ message: error });
+    res.status(500).json(error);
   }
 }
  
@@ -43,7 +44,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 
     res.status(201).json(user)
   } catch (error) {
-    throw error
+    res.status(500).json(error);
   }
 }
 
@@ -56,6 +57,6 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 
     res.status(201).json(updatedCurrentUser)
   } catch (error) {
-    throw error
+    res.status(500).json(error);
   }
 }

@@ -1,4 +1,5 @@
 import { Response, Request } from "express"
+
 import User from "../../models/user"
 import { IUser } from "../../interfaces/user" 
 
@@ -7,7 +8,7 @@ const getUsers = async (req: Request, res: Response): Promise<void> => {
     const users: IUser[] = await User.find()
     res.status(200).json({ users })
   } catch (error) {
-    throw error
+    res.status(500).json(error);
   }
 }
 
@@ -25,7 +26,7 @@ const updateUser = async (req: Request, res: Response): Promise<void> => {
 
     res.status(200).json(updateUser)
   } catch (error) {
-    throw error
+    res.status(500).json(error);
   }
 }
 

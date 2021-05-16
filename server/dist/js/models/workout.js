@@ -16,6 +16,9 @@ const workoutSchema = new mongoose_1.Schema({
     },
     completedAt: {
         type: String
+    },
+    title: {
+        type: String
     }
 }, { timestamps: true });
 exports.default = mongoose_1.model("workout", workoutSchema);

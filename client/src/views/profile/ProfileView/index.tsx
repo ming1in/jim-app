@@ -1,21 +1,21 @@
 import React from "react";
 
 import {
-  Paper,
   Box,
   Container,
-  Typography,
   makeStyles,
   createStyles,
 } from "@material-ui/core";
-import UserProfileDetail from "./UserProfileDetailCard";
+
+import UserProfileDetailCard from "./UserProfileDetailCard";
+import UserWorkoutsCard from "./UserWorkoutsCard";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     profilePaper: {
       marginRight: theme.spacing(2),
       flexGrow: 1,
-      maxWidth: '50%'
+      maxWidth: "50%",
     },
     workoutPaper: {
       marginLeft: theme.spacing(2),
@@ -31,10 +31,8 @@ export default function ProfileView() {
   return (
     <Container>
       <Box display="flex" mt={5}>
-        <UserProfileDetail className={classes.profilePaper} />
-        <Paper className={classes.workoutPaper}>
-          <Typography> workout stuff</Typography>
-        </Paper>
+        <UserProfileDetailCard className={classes.profilePaper} />
+        <UserWorkoutsCard className={classes.profilePaper} />
       </Box>
     </Container>
   );
