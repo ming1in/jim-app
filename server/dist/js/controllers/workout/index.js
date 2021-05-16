@@ -12,7 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getWorkout = exports.addWorkout = exports.getExercises = void 0;
+exports.getAllWorkout = exports.completeWorkout = exports.getWorkout = exports.addWorkout = exports.getExercises = void 0;
+const moment_1 = __importDefault(require("moment"));
 const exercise_1 = __importDefault(require("../../models/exercise"));
 const workout_1 = __importDefault(require("../../models/workout"));
 const getExercises = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -29,14 +30,15 @@ exports.getExercises = getExercises;
 const addWorkout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const exercises = req.body.exercises;
+        const title = req.body.title;
         const currentUser = req.body.currentUser;
         const baseWorkout = {
             isFavorited: false,
             completedAt: null
         };
-        const newWorkout = new workout_1.default(Object.assign(Object.assign({}, baseWorkout), { exercises, userId: currentUser._id }));
+        const newWorkout = new workout_1.default(Object.assign(Object.assign({}, baseWorkout), { exercises,
+            title, userId: currentUser._id }));
         yield newWorkout.save();
-        console.log(newWorkout);
         res.status(201).json(newWorkout);
     }
     catch (error) {
@@ -55,3 +57,26 @@ const getWorkout = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.getWorkout = getWorkout;
+const completeWorkout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { workoutId } = req.params;
+        const workout = (yield workout_1.default.find({ _id: workoutId }))[0];
+        yield workout.updateOne({ completedAt: moment_1.default().toISOString() });
+        res.status(200).json(workout);
+    }
+    catch (error) {
+        throw new Error(error);
+    }
+});
+exports.completeWorkout = completeWorkout;
+const getAllWorkout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { userId } = req.params;
+        const userWorkout = yield workout_1.default.find({ userId });
+        res.status(200).json(userWorkout);
+    }
+    catch (error) {
+        throw new Error(error);
+    }
+});
+exports.getAllWorkout = getAllWorkout;

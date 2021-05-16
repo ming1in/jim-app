@@ -11,7 +11,7 @@ export default function WorkoutList(props: any) {
 
   return (
     <>
-      <Typography variant="h3">Workout</Typography>
+      <Typography variant="h3">{context!.workout.title}</Typography>
       <List>
         {Object.values(context?.workout.exercises[0]).map((exercise: any, idx) => (
           <WorkoutListItem exercise={exercise} numExercise={idx}/>

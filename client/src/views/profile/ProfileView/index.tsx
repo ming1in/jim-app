@@ -8,7 +8,9 @@ import {
   makeStyles,
   createStyles,
 } from "@material-ui/core";
-import UserProfileDetail from "./UserProfileDetailCard";
+
+import UserProfileDetailCard from "./UserProfileDetailCard";
+import UserWorkoutsCard from "./UserWorkoutsCard";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -31,10 +33,8 @@ export default function ProfileView() {
   return (
     <Container>
       <Box display="flex" mt={5}>
-        <UserProfileDetail className={classes.profilePaper} />
-        <Paper className={classes.workoutPaper}>
-          <Typography> workout stuff</Typography>
-        </Paper>
+        <UserProfileDetailCard className={classes.profilePaper} />
+        <UserWorkoutsCard className={classes.profilePaper} />
       </Box>
     </Container>
   );

@@ -5,5 +5,7 @@ export enum EApi {
   GET_EXERCISES = 'http://localhost:5000/exercises',
   EDIT_USER = 'http://localhost:5000/edit-user',
   ADD_WORKOUT = 'http://localhost:5000/workouts/add',
-  GET_WORKOUT = 'http://localhost:5000/workouts/'
+  GET_WORKOUT = 'http://localhost:5000/workouts/',
+  ALL_WORKOUTS = 'http://localhost:5000/workouts/all/',
+  COMPLETE_WORKOUT = 'http://localhost:5000/workouts/complete/'
 }

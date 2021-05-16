@@ -18,6 +18,9 @@ const workoutSchema: Schema = new Schema(
     },
     completedAt: {
       type: String
+    },
+    title: {
+      type: String
     }
   },
   { timestamps: true }

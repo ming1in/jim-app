@@ -29,11 +29,23 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export default function Sidebar(props: any) {
+export default function Sidebar() {
   const classes = useStyles();
   const context = useContext(WorkoutContext);
+  const workouts = useWorkouts()
 
   const [isStarted, setIsStarted] = useState(true);
+
+  const handleFinishWorkout = () => {
+    workouts.complete.mutate(context?.workout._id)
+  }
+
+
+  const getCompleteButton = () => {
+    if (context?.progress !== 100) return 'Keep going!'
+    
+    return "Finish"
+  }
 
   return (
     <Drawer
@@ -87,8 +99,13 @@ export default function Sidebar(props: any) {
             />
           </Box>
         </Box>
-        <Button variant="contained" color="primary">
-          {false ? <CircularProgress /> : "Finish Workout"}
+        <Button
+          variant="contained"
+          color="primary"
+          disabled={context?.progress !== 100}
+          onClick={handleFinishWorkout}
+        >
+          {getCompleteButton()}
         </Button>
       </Box>
     </Drawer>

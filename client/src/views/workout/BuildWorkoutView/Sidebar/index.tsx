@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { useState, Dispatch, SetStateAction } from "react";
 
 import {
   Drawer,
@@ -10,6 +10,7 @@ import {
   Divider,
   Button,
   CircularProgress,
+  TextField,
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 
@@ -36,8 +37,10 @@ export default function Sidebar(props: ISidebarProps) {
   const classes = useStyles();
   const workouts = useWorkouts();
 
+  const [title, setTitle] = useState("Random Workout");
+
   const handleStartWorkout = () => {
-    workouts.add.mutate(props.selectedExercises);
+    workouts.add.mutate({exercises: props.selectedExercises, title});
   };
 
   return (
@@ -52,13 +55,18 @@ export default function Sidebar(props: ISidebarProps) {
         display="flex"
         flexDirection="column"
         bgcolor="white"
-        paddingX={1}
-        paddingY={2}
+        paddingX={1.5}
+        paddingY={1}
         mb={5}
       >
         <Box flexGrow={1}>
-          <Typography variant="h6">Selected Exercises</Typography>
-          <Divider variant="fullWidth" />
+          <TextField
+            fullWidth
+            label="Name"
+            margin="normal"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
           <List>
             {Object.values(props.selectedExercises).map((exercise) => (
               <ExerciseListItem
