@@ -1,3 +1,4 @@
+![Copy of Jim Logo (3)](https://user-images.githubusercontent.com/43584923/118383250-301a8e00-b5ca-11eb-9d15-04e3443fe8f1.png)
 # Jim: Your Personal Gym Trainer
 
 ## Github link: [https://github.com/ming1in/jim-app](https://github.com/ming1in/jim-app)
