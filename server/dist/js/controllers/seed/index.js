@@ -23,6 +23,5 @@ const seedWorkout = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             yield temp.save();
         });
     });
-    //res.json(tempEx)
 });
 exports.seedWorkout = seedWorkout;

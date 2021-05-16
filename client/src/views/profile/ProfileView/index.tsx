@@ -1,10 +1,8 @@
 import React from "react";
 
 import {
-  Paper,
   Box,
   Container,
-  Typography,
   makeStyles,
   createStyles,
 } from "@material-ui/core";
@@ -17,7 +15,7 @@ const useStyles = makeStyles((theme) =>
     profilePaper: {
       marginRight: theme.spacing(2),
       flexGrow: 1,
-      maxWidth: '50%'
+      maxWidth: "50%",
     },
     workoutPaper: {
       marginLeft: theme.spacing(2),

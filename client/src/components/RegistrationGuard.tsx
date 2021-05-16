@@ -7,7 +7,9 @@ interface IRegistrationGuardProps {
   children: React.ReactChild;
 }
 
-export default function RegistrationGuard(props: IRegistrationGuardProps): JSX.Element {
+export default function RegistrationGuard(
+  props: IRegistrationGuardProps
+): JSX.Element {
   const history = useHistory();
   const authContext = useContext(AuthContext);
 

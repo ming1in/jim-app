@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useParams } from "react-router";
-import { CircularProgress, makeStyles, createStyles } from "@material-ui/core";
+import { makeStyles, createStyles } from "@material-ui/core";
 
 import useWorkouts from "../../../hooks/useWorkouts";
 import Sidebar from "./Sidebar";
@@ -38,7 +38,7 @@ export default function WorkoutView() {
 
   const { data: workout } = workouts.fetchWorkout(workoutId);
 
-  if (!workout) return null
+  if (!workout) return null;
 
   return (
     <WorkoutProvider>

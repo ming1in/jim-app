@@ -17,4 +17,5 @@ router.get('/workouts/all/:userId', index_3.getAllWorkout);
 router.post('/workouts/add', index_3.addWorkout);
 router.get('/workouts/:workoutId', index_3.getWorkout);
 router.post('/workouts/complete/:workoutId', index_3.completeWorkout);
+router.post('/workouts/gen', index_3.generateWorkout);
 exports.default = router;

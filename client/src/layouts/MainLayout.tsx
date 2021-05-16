@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
       flex: "1 1 auto",
       overflow: "hidden",
       minHeight: "100vh",
-      paddingTop: 64
+      paddingTop: 64,
     },
     content: {
       flex: "1 1 auto",

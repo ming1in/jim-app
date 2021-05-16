@@ -6,15 +6,14 @@ import WorkoutListItem from "./WorkoutListItem";
 import { WorkoutContext } from "../../../context/WorkoutProvider";
 
 export default function WorkoutList(props: any) {
-
-  const context = useContext(WorkoutContext)
+  const context = useContext(WorkoutContext);
 
   return (
     <>
       <Typography variant="h3">{context!.workout.title}</Typography>
       <List>
-        {Object.values(context?.workout.exercises[0]).map((exercise: any, idx) => (
-          <WorkoutListItem exercise={exercise} numExercise={idx}/>
+        {context?.workout.exercises.map((exercise: any, idx: number) => (
+          <WorkoutListItem exercise={exercise} numExercise={idx} />
         ))}
       </List>
     </>

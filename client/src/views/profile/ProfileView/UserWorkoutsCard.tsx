@@ -59,8 +59,6 @@ export default function UserWorkoutsCard(props: any) {
 
   if (!data) return null;
 
-  console.log(data)
-
   return (
     <Paper className={clsx(classes.root, props.className)}>
       <Typography variant="h4">Workouts</Typography>

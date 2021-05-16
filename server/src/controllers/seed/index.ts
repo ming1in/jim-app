@@ -10,5 +10,4 @@ export const seedWorkout = async (req: Request, res: Response): Promise<void> =>
         const temp: IExercise = new Exercise(value);
         await temp.save();
     });
-    //res.json(tempEx)
 }

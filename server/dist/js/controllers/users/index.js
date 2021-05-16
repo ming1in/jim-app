@@ -20,7 +20,7 @@ const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(200).json({ users });
     }
     catch (error) {
-        throw error;
+        res.status(500).json(error);
     }
 });
 exports.getUsers = getUsers;
@@ -31,7 +31,7 @@ const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         res.status(200).json(updateUser);
     }
     catch (error) {
-        throw error;
+        res.status(500).json(error);
     }
 });
 exports.updateUser = updateUser;

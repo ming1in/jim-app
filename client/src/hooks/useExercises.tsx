@@ -1,13 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useContext } from "react";
-
 import axios from "axios";
 import { useQuery } from "react-query";
-import { useHistory } from "react-router";
 
-import { AuthContext } from "../context/AuthProvider";
 import { EApi } from "../enums/api";
-import { ERoute } from "../enums/route";
 
 interface Exercise {
   _id: string;
@@ -16,8 +11,6 @@ interface Exercise {
 }
 
 export default function userExercises() {
-  const history = useHistory();
-  const auth = useContext(AuthContext);
 
   const fetchExercises = async (muscleGroup: string): Promise<Exercise[]> => {
     const data = await axios.get(EApi.GET_EXERCISES, {

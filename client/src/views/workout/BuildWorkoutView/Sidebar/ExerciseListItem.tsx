@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { Dispatch, SetStateAction, useState, useEffect } from "react";
 
 import {
@@ -5,7 +6,6 @@ import {
   ListItemText,
   ListItemSecondaryAction,
   IconButton,
-  Typography,
   Divider,
   Box,
   Collapse,

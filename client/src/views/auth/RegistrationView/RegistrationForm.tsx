@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import * as Yup from "yup";
 import { Formik } from "formik";
@@ -15,13 +15,23 @@ import {
   createStyles,
   TextField,
   MenuItem,
-  FormHelperText
+  FormHelperText,
 } from "@material-ui/core";
 
 import useAuth from "../../../hooks/useAuth";
 
 const genderMenuItems = ["Male", "Female", "Other"];
-const goalMenuItems = ["Weight loss", "Strength Training", "Mental wellbeing", "Powerlifting", "Bodybuilding", "Tone and sculpt", "Running", "Get into working out", "Overall fitness"];
+const goalMenuItems = [
+  "Weight loss",
+  "Strength Training",
+  "Mental wellbeing",
+  "Powerlifting",
+  "Bodybuilding",
+  "Tone and sculpt",
+  "Running",
+  "Get into working out",
+  "Overall fitness",
+];
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -33,12 +43,12 @@ const useStyles = makeStyles((theme) =>
 );
 
 export default function RegistrationForm() {
-  const auth = useAuth()
+  const auth = useAuth();
   const classes = useStyles();
 
   const handleRegister = (details: any) => {
-    auth.register.mutate(details)
-  }
+    auth.register.mutate(details);
+  };
 
   return (
     <Formik

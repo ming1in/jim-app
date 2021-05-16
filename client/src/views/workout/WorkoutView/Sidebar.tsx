@@ -1,4 +1,4 @@
-import React, { Dispatch, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 
 import {
   Drawer,
@@ -8,7 +8,6 @@ import {
   Typography,
   Divider,
   Button,
-  CircularProgress,
 } from "@material-ui/core";
 
 import useWorkouts from "../../../hooks/useWorkouts";
@@ -32,20 +31,19 @@ const useStyles = makeStyles((theme) =>
 export default function Sidebar() {
   const classes = useStyles();
   const context = useContext(WorkoutContext);
-  const workouts = useWorkouts()
+  const workouts = useWorkouts();
 
   const [isStarted, setIsStarted] = useState(true);
 
   const handleFinishWorkout = () => {
-    workouts.complete.mutate(context?.workout._id)
-  }
-
+    workouts.complete.mutate(context?.workout._id);
+  };
 
   const getCompleteButton = () => {
-    if (context?.progress !== 100) return 'Keep going!'
-    
-    return "Finish"
-  }
+    if (context?.progress !== 100) return "Keep going!";
+
+    return "Finish";
+  };
 
   return (
     <Drawer

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import * as Yup from "yup";
 import { Formik } from "formik";
@@ -16,7 +16,7 @@ import { IAuthCredentials } from "../../../interfaces/auth";
 export default function LoginForm() {
   const auth = useAuth();
 
-  const handleLogin = async(credentials: IAuthCredentials) => {
+  const handleLogin = async (credentials: IAuthCredentials) => {
     await auth.login.mutate(credentials);
   };
 
@@ -100,7 +100,9 @@ export default function LoginForm() {
               {auth.login.isLoading ? <CircularProgress /> : "Sign in"}
             </Button>
             {Boolean(auth.login.isError) && (
-              <FormHelperText error>Something went wrong, check your credentials and try again</FormHelperText>
+              <FormHelperText error>
+                Something went wrong, check your credentials and try again
+              </FormHelperText>
             )}
           </Box>
         </form>

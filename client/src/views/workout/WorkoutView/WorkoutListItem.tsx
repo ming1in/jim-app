@@ -74,7 +74,7 @@ export default function WorkoutListItem(props: IWorkoutListItemProps) {
 
   const handleStartResting = (setNumber: number) => {
     setIsRested([...isRested, setNumber]);
-    context!.startResting()
+    context!.startResting();
   };
 
   useEffect(() => {
@@ -92,7 +92,9 @@ export default function WorkoutListItem(props: IWorkoutListItemProps) {
           secondary={`${props.exercise.set} sets - ${props.exercise.rep} reps`}
         />
         <ListItemSecondaryAction>
-          <Button onClick={toggleCollapsed}>Start Exercise</Button>
+          <Button variant="outlined" onClick={toggleCollapsed}>
+            {progress === 100 ? "Done" : "Start Exercise"}
+          </Button>
         </ListItemSecondaryAction>
       </ListItem>
       <LinearProgress

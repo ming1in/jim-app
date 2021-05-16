@@ -6,13 +6,10 @@ import {
   makeStyles,
   createStyles,
   List,
-  Typography,
-  Divider,
   Button,
   CircularProgress,
   TextField,
 } from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
 
 import useWorkouts from "../../../../hooks/useWorkouts";
 import ExerciseListItem from "./ExerciseListItem";
@@ -40,7 +37,7 @@ export default function Sidebar(props: ISidebarProps) {
   const [title, setTitle] = useState("Random Workout");
 
   const handleStartWorkout = () => {
-    workouts.add.mutate({exercises: props.selectedExercises, title});
+    workouts.add.mutate({ exercises: props.selectedExercises, title });
   };
 
   return (

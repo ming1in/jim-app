@@ -32,7 +32,9 @@ const useStyles = makeStyles((theme) =>
 export default function BuildWorkoutView(props: any) {
   const classes = useStyles();
 
-  const [selectedExercises, setSelectedExercises] = useState < { [id:string]: IExercise }>({});
+  const [selectedExercises, setSelectedExercises] = useState<{
+    [id: string]: IExercise;
+  }>({});
 
   return (
     <div className={classes.root}>

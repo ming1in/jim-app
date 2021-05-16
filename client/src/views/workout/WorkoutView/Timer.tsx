@@ -23,7 +23,7 @@ export default function Timer(props: ITimerProps) {
         props.variant === "timer" ? setTime(time - 1) : setTime(time + 1);
 
       if (props.isStarted && props.variant === "timer" && time === 0) {
-        setTime(0)
+        setTime(0);
         props.onComplete && props.onComplete();
       }
     }, 1000);

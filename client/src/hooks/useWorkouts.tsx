@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 import axios from "axios";
 import { useMutation, useQuery } from "react-query";
@@ -44,11 +44,11 @@ export default function useWorkouts() {
   };
 
   const add = useMutation(
-    ((exercises: any) =>
+    (exercises: any) =>
       axios.post(EApi.ADD_WORKOUT, {
         currentUser: auth?.currentUser,
-        ...exercises
-      })),
+        ...exercises,
+      }),
     {
       onSuccess: ({ data }) => {
         history.push(`${ERoute.WORKOUT}/${data._id}`);
@@ -65,5 +65,18 @@ export default function useWorkouts() {
     }
   );
 
-  return { add, complete, fetchWorkout, fetchAll };
+  const generate = useMutation(
+    (category: string) =>
+      axios.post(EApi.GEN_WORKOUT, {
+        category,
+        currentUser: auth?.currentUser,
+      }),
+    {
+      onSuccess: ({ data }) => {
+        history.push(`${ERoute.WORKOUT}/${data._id}`);
+      },
+    }
+  );
+
+  return { add, complete, generate, fetchWorkout, fetchAll };
 }

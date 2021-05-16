@@ -27,15 +27,15 @@ export default function WorkoutProvider(props: IWorkoutProviderProps) {
 
   const addCompletedSet = () => setTotalCompletedSets(totalCompletedSets + 1);
 
-  const totalSets = Object.values(workout[0].exercises[0]).reduce(
-    (acc, exercise: any) => acc + exercise.set,
+  const totalSets = workout[0].exercises.reduce(
+    (acc: number, exercise: any) => acc + exercise.set,
     0
   ) as number;
 
   const progress = Math.round((totalCompletedSets / totalSets) * 100);
 
-  const stopResting = () => setIsResting(false)
-  const startResting =() => setIsResting(true)
+  const stopResting = () => setIsResting(false);
+  const startResting = () => setIsResting(true);
 
   return (
     <WorkoutContext.Provider
@@ -45,7 +45,7 @@ export default function WorkoutProvider(props: IWorkoutProviderProps) {
         isResting,
         addCompletedSet,
         stopResting,
-        startResting
+        startResting,
       }}
     >
       {props.children}
